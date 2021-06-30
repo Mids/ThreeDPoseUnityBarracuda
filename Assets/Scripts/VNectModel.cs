@@ -340,6 +340,10 @@ public class VNectModel : MonoBehaviour
         var forward = TriangleNormal(jointPoints[PositionIndex.hip.Int()].Pos3D, jointPoints[PositionIndex.lThighBend.Int()].Pos3D, jointPoints[PositionIndex.rThighBend.Int()].Pos3D);
         jointPoints[PositionIndex.hip.Int()].Transform.position = jointPoints[PositionIndex.hip.Int()].Pos3D * 0.005f + new Vector3(initPosition.x, initPosition.y, initPosition.z + dz);
         jointPoints[PositionIndex.hip.Int()].Transform.rotation = Quaternion.LookRotation(forward) * jointPoints[PositionIndex.hip.Int()].InverseRotation;
+        var lToePos = jointPoints[PositionIndex.lToe.Int()].Pos3D;
+        jointPoints[PositionIndex.lToe.Int()].Pos3D = lToePos + new Vector3(0, 12, 0);
+        var rToePos = jointPoints[PositionIndex.rToe.Int()].Pos3D;
+        jointPoints[PositionIndex.rToe.Int()].Pos3D = rToePos + new Vector3(0, 12, 0);
 
         // rotate each of bones
         foreach (var jointPoint in jointPoints)
@@ -373,6 +377,8 @@ public class VNectModel : MonoBehaviour
         //rHand.Transform.rotation = Quaternion.LookRotation(jointPoints[PositionIndex.rThumb2.Int()].Pos3D - jointPoints[PositionIndex.rMid1.Int()].Pos3D, rf) * rHand.InverseRotation;
         rHand.Transform.rotation = Quaternion.LookRotation(jointPoints[PositionIndex.rThumb2.Int()].Pos3D - jointPoints[PositionIndex.rMid1.Int()].Pos3D, rf) * rHand.InverseRotation;
         */
+
+
         foreach (var sk in Skeletons)
         {
             var s = sk.start;
