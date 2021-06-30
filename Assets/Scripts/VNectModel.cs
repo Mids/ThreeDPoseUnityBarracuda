@@ -152,10 +152,6 @@ public class VNectModel : MonoBehaviour
         
         // Left Arm
         jointPoints[PositionIndex.lShldrBend.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.LeftUpperArm);
-        // L UpperArm
-        // Rotation 0.5700, 0.097, -7.856
-        Debug.LogFormat("Rotation: {0}, {1}, {2}", anim.GetBoneTransform(HumanBodyBones.LeftUpperArm).rotation.x, anim.GetBoneTransform(HumanBodyBones.LeftUpperArm).rotation.y, anim.GetBoneTransform(HumanBodyBones.LeftUpperArm).rotation.z);
-
         jointPoints[PositionIndex.lForearmBend.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.LeftLowerArm);
         jointPoints[PositionIndex.lHand.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.LeftHand);
         //jointPoints[PositionIndex.lThumb2.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.LeftThumbIntermediate);
@@ -173,6 +169,8 @@ public class VNectModel : MonoBehaviour
         jointPoints[PositionIndex.rShin.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.RightLowerLeg);
         jointPoints[PositionIndex.rFoot.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.RightFoot);
         jointPoints[PositionIndex.rToe.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.RightToes);
+        // 0, 0, -90
+        Debug.LogFormat("anim.GetTransform RightToes: {0}, {1}, {2}", anim.GetBoneTransform(HumanBodyBones.RightToes).rotation.x, anim.GetBoneTransform(HumanBodyBones.RightToes).rotation.y, anim.GetBoneTransform(HumanBodyBones.RightToes).rotation.z);
 
         // Left Leg
         jointPoints[PositionIndex.lThighBend.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.LeftUpperLeg);
@@ -346,7 +344,6 @@ public class VNectModel : MonoBehaviour
         // rotate each of bones
         foreach (var jointPoint in jointPoints)
         {
-            Debug.Log("jointPoint: " + jointPoint);
             if (jointPoint.Parent != null)
             {
                 var fv = jointPoint.Parent.Pos3D - jointPoint.Pos3D;
