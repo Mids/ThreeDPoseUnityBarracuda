@@ -65,7 +65,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-
-### ONNX
+# ONNX
 *.onnx
 *.onnx.meta
+
+# Video files
+/[Aa]ssets/[Vv]ideo/*
