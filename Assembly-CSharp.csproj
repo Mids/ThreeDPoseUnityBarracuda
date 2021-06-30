@@ -78,7 +78,7 @@
     <Compile Include="Assets\Avatar\unity-chan!\Unity-chan! Model\Scripts\UnityChanControlScriptWithRgidBody.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\LookAt\VRMLookAtHead.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Scripts\Format\ExtensionsAndExtras\glTFExtensions.cs" />
-    <Compile Include="Assets\Scripts\VNectModel.cs" />
+    <Compile Include="Assets\Scripts\Estimation\VNectModel.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\FirstPerson\VRMFirstPerson.cs" />
     <Compile Include="Assets\VRM\DepthFirstScheduler\LockQueue.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\SpringBone\VRMSpringBoneColliderGroup.cs" />
@@ -118,7 +118,7 @@
     <Compile Include="Assets\VRM\UniJSON\Scripts\Utf8String\Utf8Iterator.cs" />
     <Compile Include="Assets\VRM\DepthFirstScheduler\TaskChain.cs" />
     <Compile Include="Assets\VRM\UniHumanoid\PoseModifier\HandPose.cs" />
-    <Compile Include="Assets\Scripts\VNectBarracudaRunner.cs" />
+    <Compile Include="Assets\Scripts\Estimation\VNectBarracudaRunner.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\BlendShape\BlendShapeAvatar.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\Extensions\ArraySegmentExtensions.cs" />
     <Compile Include="Assets\VRM\DepthFirstScheduler\IEnumeratorExtensions.cs" />
@@ -133,7 +133,7 @@
     <Compile Include="Assets\VRM\UniJSON\Scripts\MsgPack\MsgPackParser.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Scripts\Format\glTFCamera.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\Json\JsonValue.cs" />
-    <Compile Include="Assets\Scripts\VideoCapture.cs" />
+    <Compile Include="Assets\Scripts\Estimation\VideoCapture.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\GenericCallUtility\GenericInvokeCallFactory.g.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Scripts\IO\AnimationKeyframeData.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\Format\VRMExportObject.cs" />
@@ -286,7 +286,7 @@
     <Compile Include="Assets\VRM\UniHumanoid\Scripts\IO\Extensions\BvhExtensions.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\Format\glTF_VRM_Humanoid.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\EnumUtil.cs" />
-    <Compile Include="Assets\Scripts\CameraMover.cs" />
+    <Compile Include="Assets\Scripts\Estimation\CameraMover.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\ITreeNode.cs" />
     <Compile Include="Assets\VRM\ShaderProperty\Runtime\GLTF\Unlit_Transparent_Cutout.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Scripts\IO\ZipArchiveStorage.cs" />
@@ -313,6 +313,11 @@
     <Compile Include="Assets\VRM\UniHumanoid\PoseModifier\IPoseModifier.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonArrayValidator.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\GenericCallUtility\GenericInvokeCallFactory.cs" />
+    <Compile Include="Assets\Scripts\Recording\PoseEstimationRecorder.cs" />
+    <Compile Include="Assets\Scripts\Recording\AnimationPlayer.cs" />
+    <Compile Include="Assets\Scripts\Recording\JointData.cs" />
+    <Compile Include="Assets\Scripts\Recording\SkeletonData.cs" />
+    <Compile Include="Assets\Scripts\Recording\MotionData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Avatar\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
