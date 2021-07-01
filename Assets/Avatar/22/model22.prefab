@@ -50,7 +50,6 @@ MonoBehaviour:
   SkeletonZ: 0
   SkeletonScale: 0.006
   ModelObject: {fileID: 6771526164760123183}
-  Nose: {fileID: 342526231366869875}
   ZScale: 1
 --- !u!1001 &3375630702103301670
 PrefabInstance:
@@ -135,12 +134,6 @@ GameObject:
 --- !u!4 &7755782345761531196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: d625377834c52804fb7417b87039de32,
-    type: 3}
-  m_PrefabInstance: {fileID: 3375630702103301670}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &342526231366869875 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6190122955639018155, guid: d625377834c52804fb7417b87039de32,
     type: 3}
   m_PrefabInstance: {fileID: 3375630702103301670}
   m_PrefabAsset: {fileID: 0}

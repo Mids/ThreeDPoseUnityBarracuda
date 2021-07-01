@@ -226,7 +226,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1 &106284798 stripped
 GameObject:
@@ -246,7 +246,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.09, z: 0.14}
-  m_Center: {x: -0.13, y: -0.02, z: 0.01}
+  m_Center: {x: -0.13, y: -0.02, z: -0.01}
 --- !u!171741748 &106284800
 ArticulationBody:
   m_ObjectHideFlags: 0
@@ -256,7 +256,7 @@ ArticulationBody:
   m_GameObject: {fileID: 106284798}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.00000023841864, y: -0.0000001937151, z: -0.16654414}
+  m_ParentAnchorPosition: {x: -0.00000023841864, y: -0.0000001937151, z: -0.16654411}
   m_ParentAnchorRotation: {x: 0.6708825, y: 0.74156374, z: -0.0000010431345, w: 0.0000000105367235}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -296,7 +296,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1 &170076733
 GameObject:
@@ -459,7 +459,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1 &188227607 stripped
 GameObject:
@@ -749,7 +749,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1 &315565968 stripped
 GameObject:
@@ -1178,7 +1178,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1 &572709889 stripped
 GameObject:
@@ -1250,8 +1250,8 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617877340}
   m_Enabled: 1
-  m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.40061876, y: 0.0000001792796, z: -0.000000013321456}
+  m_Mass: 0.5
+  m_ParentAnchorPosition: {x: -0.40061903, y: 0.00000017997809, z: -0.000000013670701}
   m_ParentAnchorRotation: {x: 0.6685194, y: -0.7433498, z: 0.008404031, w: 0.021033054}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -1291,7 +1291,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1 &621910217
 GameObject:
@@ -1617,7 +1617,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1 &745559134 stripped
 GameObject:
@@ -1721,7 +1721,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769284633}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 15588459e6605c2489744026931a299e, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: a27459342c0817d4291cc992761bee3c, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -1788,7 +1788,7 @@ ArticulationBody:
   m_GameObject: {fileID: 773972421}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.45050213, y: -0.000054997538, z: -0.000000041048658}
+  m_ParentAnchorPosition: {x: -0.45050213, y: -0.000054997538, z: 0.000000018555989}
   m_ParentAnchorRotation: {x: -0.00000006322027, y: -0.000000021073424, z: 0.7073888,
     w: 0.7068247}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -1829,7 +1829,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!4 &796490641 stripped
 Transform:
@@ -1929,8 +1929,8 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939258878}
   m_Enabled: 1
-  m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.33604777, y: 0.000000017578714, z: -0.00000003658663}
+  m_Mass: 0.5
+  m_ParentAnchorPosition: {x: -0.33604777, y: 0.000000017578714, z: 0.000000023018012}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.6708825, w: 0.74156374}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -1970,7 +1970,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!4 &970498030 stripped
 Transform:
@@ -2389,7 +2389,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1 &1198046880
 GameObject:
@@ -2657,7 +2657,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!4 &1330607707 stripped
 Transform:
@@ -2735,7 +2735,7 @@ ArticulationBody:
   m_GameObject: {fileID: 1382359840}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.060671628, y: -0.00026667048, z: 0.000000063329935}
+  m_ParentAnchorPosition: {x: -0.060671628, y: -0.00026667048, z: 0.00000008195639}
   m_ParentAnchorRotation: {x: -0.0000009693775, y: 0.0000020230486, z: 0.70682526,
     w: 0.7073883}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -2776,7 +2776,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1 &1382918167 stripped
 GameObject:
@@ -2847,7 +2847,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1001 &1392124583
 PrefabInstance:
@@ -4701,8 +4701,8 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040106623}
   m_Enabled: 1
-  m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.33604786, y: -0.0000000040745363, z: -0.00000006638896}
+  m_Mass: 0.5
+  m_ParentAnchorPosition: {x: -0.33604786, y: -0.0000000040745363, z: -0.0000000067843104}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.6708825, w: 0.74156374}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -4742,7 +4742,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1 &2074468643
 GameObject:
@@ -4990,7 +4990,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!1001 &3375630702964238122
 PrefabInstance:
@@ -5111,7 +5111,7 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3375630702964238124}
   m_Enabled: 1
-  m_Mass: 1
+  m_Mass: 0.5
   m_ParentAnchorPosition: {x: -0.40061882, y: -0.00000012863893, z: 0.000000010195776}
   m_ParentAnchorRotation: {x: 0.6685194, y: -0.7433499, z: -0.008403978, w: -0.021033067}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -5152,7 +5152,7 @@ ArticulationBody:
   m_AngularDamping: 0.05
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_CollisionDetectionMode: 0
 --- !u!114 &3375630702964238126 stripped
 MonoBehaviour:
