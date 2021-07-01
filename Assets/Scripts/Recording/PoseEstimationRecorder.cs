@@ -5,21 +5,27 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Video;
 
 
 public class PoseEstimationRecorder : MonoBehaviour
 {
-    public DefaultAsset folder;
-    private string folderPath;
+    //public DefaultAsset folder;
+    //private string folderPath;
 
-    public Animator animator;
+    //private Animator animator;
+    public GameObject ModelObject;
 
-    public List<AnimationClip> animList = new List<AnimationClip>();
+    public VideoPlayer VideoPlayer;
 
-    public AnimatorOverrideController tOverrideController;
+    private VNectModel vNectModel;
+
+    //public List<AnimationClip> animList = new List<AnimationClip>();
+
+    //public AnimatorOverrideController tOverrideController;
 
     public int timeScale = 1;
-    public float fps = 60f;
+    public float fps = 30f;
     private static float dt;
     private float currentTime = 0f;
 
@@ -29,63 +35,52 @@ public class PoseEstimationRecorder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = timeScale;
+        vNectModel = ModelObject.GetComponent<VNectModel>();
+
+        //Time.timeScale = timeScale;
         Application.targetFrameRate = 30 * timeScale;
         dt = 1f / fps;
-        JointABs = animator.GetComponentsInChildren<ArticulationBody>().ToList();
+        JointABs = ModelObject.GetComponentsInChildren<ArticulationBody>().ToList();
+
         Assert.IsTrue(JointABs[0].isRoot);
         JointTransforms = JointABs.Select(p => p.transform).ToList();
-    }
-
-    public void LoadFolder()
-    {
-        if (tOverrideController == default)
-        {
-            tOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-            animator.runtimeAnimatorController = tOverrideController;
-        }
-
-        folderPath = AssetDatabase.GetAssetPath(folder);
-        GetAllFilesInDirectory(folderPath);
 
         StartCoroutine(CaptureTransform());
     }
 
-    private void GetAllFilesInDirectory(string dirPath)
-    {
-        var info = new DirectoryInfo(dirPath);
-        var fileInfo = info.GetFiles("*.fbx", SearchOption.AllDirectories);
-
-        animList.Clear();
-
-        foreach (var file in fileInfo)
-        {
-            var absolutePath = file.FullName;
-            absolutePath = absolutePath.Replace(Path.DirectorySeparatorChar, '/');
-            var relativePath = "";
-            if (absolutePath.StartsWith(Application.dataPath))
-                relativePath = "Assets" + absolutePath.Substring(Application.dataPath.Length);
-            var fbxFile = AssetDatabase.LoadAssetAtPath<GameObject>(relativePath);
-
-            var clips = AssetDatabase.LoadAllAssetRepresentationsAtPath(relativePath)
-                .Where(p => p as AnimationClip != null);
-
-            foreach (var clip in clips)
-            {
-                var animClip = clip as AnimationClip;
-
-                if (animClip != default && animClip.isHumanMotion)
-                    animList.Add(animClip);
-            }
-        }
-    }
-
     private IEnumerator CaptureTransform()
     {
-        var t = animator.transform;
+        var t = ModelObject.transform;
         // animator.speed = 0f;
+        
+        t.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+        var motionData = ScriptableObject.CreateInstance<MotionData>();
+        int frameCount = (int)VideoPlayer.frameCount;
+        motionData.Init(frameCount);
+        motionData.characterName = t.parent.name;
+        motionData.motionName = VideoPlayer.clip.name;
+        motionData.fps = fps;
 
+        int frame = 0;
 
+        while(currentTime < VideoPlayer.clip.length)
+        {
+            // Set rotation & position to the character
+            yield return new WaitForEndOfFrame();
+
+            var skeletonData = GetSkeletonData(frame++);
+            motionData.data.Add(skeletonData);
+
+            currentTime += dt;
+        }
+
+        CalculateVelocity(motionData);
+
+        motionData.Save();
+
+        currentTime = 0f;
+
+        /*
         foreach (var anim in animList)
         {
             print(anim.name);
@@ -120,6 +115,7 @@ public class PoseEstimationRecorder : MonoBehaviour
 
             currentTime = 0f;
         }
+        */
     }
 
     private void CalculateVelocity(MotionData motionData)
@@ -247,3 +243,49 @@ public class PoseEstimationRecorder : MonoBehaviour
         GUILayout.Label($"{1 / Time.deltaTime} fps");
     }
 }
+
+
+/*
+public void LoadFolder()
+{
+    if (tOverrideController == default)
+    {
+        tOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        animator.runtimeAnimatorController = tOverrideController;
+    }
+
+    folderPath = AssetDatabase.GetAssetPath(folder);
+    GetAllFilesInDirectory(folderPath);
+
+    StartCoroutine(CaptureTransform());
+}
+
+private void GetAllFilesInDirectory(string dirPath)
+{
+    var info = new DirectoryInfo(dirPath);
+    var fileInfo = info.GetFiles("*.fbx", SearchOption.AllDirectories);
+
+    animList.Clear();
+
+    foreach (var file in fileInfo)
+    {
+        var absolutePath = file.FullName;
+        absolutePath = absolutePath.Replace(Path.DirectorySeparatorChar, '/');
+        var relativePath = "";
+        if (absolutePath.StartsWith(Application.dataPath))
+            relativePath = "Assets" + absolutePath.Substring(Application.dataPath.Length);
+        var fbxFile = AssetDatabase.LoadAssetAtPath<GameObject>(relativePath);
+
+        var clips = AssetDatabase.LoadAllAssetRepresentationsAtPath(relativePath)
+            .Where(p => p as AnimationClip != null);
+
+        foreach (var clip in clips)
+        {
+            var animClip = clip as AnimationClip;
+
+            if (animClip != default && animClip.isHumanMotion)
+                animList.Add(animClip);
+        }
+    }
+}
+*/
