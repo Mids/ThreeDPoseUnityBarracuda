@@ -53,7 +53,7 @@ public class PoseEstimationRecorder : MonoBehaviour
         var t = ModelObject.transform;
         // animator.speed = 0f;
         
-        t.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+        //t.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
         var motionData = ScriptableObject.CreateInstance<MotionData>();
         int frameCount = (int)VideoPlayer.frameCount;
         motionData.Init(frameCount);
