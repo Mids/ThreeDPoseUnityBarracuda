@@ -110,12 +110,12 @@ public class VNectModel : MonoBehaviour
 
     private Vector3 initPosition; // Initial center position
 
-    private Quaternion InitGazeRotation;
-    private Quaternion gazeInverse;
+    //private Quaternion InitGazeRotation;
+    //private Quaternion gazeInverse;
 
     // UnityChan
     public GameObject ModelObject;
-    public GameObject Nose;
+    //public GameObject Nose;
     private Animator anim;
 
     // Move in z direction
@@ -169,8 +169,6 @@ public class VNectModel : MonoBehaviour
         jointPoints[PositionIndex.rShin.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.RightLowerLeg);
         jointPoints[PositionIndex.rFoot.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.RightFoot);
         jointPoints[PositionIndex.rToe.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.RightToes);
-        // 0, 0, -90
-        Debug.LogFormat("anim.GetTransform RightToes: {0}, {1}, {2}", anim.GetBoneTransform(HumanBodyBones.RightToes).rotation.x, anim.GetBoneTransform(HumanBodyBones.RightToes).rotation.y, anim.GetBoneTransform(HumanBodyBones.RightToes).rotation.z);
 
         // Left Leg
         jointPoints[PositionIndex.lThighBend.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.LeftUpperLeg);
@@ -180,10 +178,14 @@ public class VNectModel : MonoBehaviour
 
         // etc
         jointPoints[PositionIndex.abdomenUpper.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.Spine);
+        //jointPoints[PositionIndex.abdomenUpper.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.Chest);
         jointPoints[PositionIndex.hip.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.Hips);
         jointPoints[PositionIndex.head.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.Head);
         jointPoints[PositionIndex.neck.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.Neck);
         jointPoints[PositionIndex.spine.Int()].Transform = anim.GetBoneTransform(HumanBodyBones.Spine);
+
+
+
 
         // Child Settings
         // Right Arm
@@ -340,6 +342,8 @@ public class VNectModel : MonoBehaviour
         var forward = TriangleNormal(jointPoints[PositionIndex.hip.Int()].Pos3D, jointPoints[PositionIndex.lThighBend.Int()].Pos3D, jointPoints[PositionIndex.rThighBend.Int()].Pos3D);
         jointPoints[PositionIndex.hip.Int()].Transform.position = jointPoints[PositionIndex.hip.Int()].Pos3D * 0.005f + new Vector3(initPosition.x, initPosition.y, initPosition.z + dz);
         jointPoints[PositionIndex.hip.Int()].Transform.rotation = Quaternion.LookRotation(forward) * jointPoints[PositionIndex.hip.Int()].InverseRotation;
+        
+        // Manually set the rotation of feet
         var lToePos = jointPoints[PositionIndex.lToe.Int()].Pos3D;
         jointPoints[PositionIndex.lToe.Int()].Pos3D = lToePos + new Vector3(0, 12, 0);
         var rToePos = jointPoints[PositionIndex.rToe.Int()].Pos3D;
