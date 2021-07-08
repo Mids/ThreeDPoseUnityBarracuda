@@ -48,14 +48,16 @@ public class PoseEstimationRecorder : MonoBehaviour
 
     public void Estimate()
     {
+        StopAllCoroutines();
         StartCoroutine(CaptureTransform());
     }
 
     private IEnumerator CaptureTransform()
     {
-        Debug.Log("<color=red></color>Started Recording");
+        Debug.Log("Started Recording");
         var t = ModelObject.transform;
         // animator.speed = 0f;
+        VideoPlayer.time = 2f;
         
         //t.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
         var motionData = ScriptableObject.CreateInstance<MotionData>();
@@ -67,7 +69,7 @@ public class PoseEstimationRecorder : MonoBehaviour
 
         int frame = 0;
 
-        while(currentTime < VideoPlayer.clip.length)
+        while(VideoPlayer.time < VideoPlayer.clip.length - 0.01f)
         {
             // Set rotation & position to the character
             yield return new WaitForEndOfFrame();
@@ -84,6 +86,7 @@ public class PoseEstimationRecorder : MonoBehaviour
 
         currentTime = 0f;
 
+        EditorApplication.ExitPlaymode();
         /*
         foreach (var anim in animList)
         {
