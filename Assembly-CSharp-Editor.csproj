@@ -128,6 +128,8 @@
     <Compile Include="Assets\VRM\UniVRM\Editor\VRMMonoBehaviourComparator.cs" />
     <Compile Include="Assets\VRM\UniVRM\Editor\BlendShape\SerializedBlendShapeClipEditor.cs" />
     <Compile Include="Assets\VRM\UniVRM\Editor\BlendShape\BlendShapeClipEditor.cs" />
+    <Compile Include="Assets\Scripts\Editor\AnimationPlayerEditor.cs" />
+    <Compile Include="Assets\Scripts\Editor\EstimationRecorderEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

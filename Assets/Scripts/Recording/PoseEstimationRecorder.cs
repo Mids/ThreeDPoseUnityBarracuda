@@ -44,12 +44,16 @@ public class PoseEstimationRecorder : MonoBehaviour
 
         Assert.IsTrue(JointABs[0].isRoot);
         JointTransforms = JointABs.Select(p => p.transform).ToList();
+    }
 
+    public void Estimate()
+    {
         StartCoroutine(CaptureTransform());
     }
 
     private IEnumerator CaptureTransform()
     {
+        Debug.Log("<color=red></color>Started Recording");
         var t = ModelObject.transform;
         // animator.speed = 0f;
         

@@ -14,11 +14,6 @@ public class AnimationPlayer : MonoBehaviour
 
     public float dt;
 
-    private void Start()
-    {
-        PlayCoroutine();
-    }
-
     public void PlayCoroutine()
     {
         dt = 1f / motion.fps;
@@ -52,8 +47,4 @@ public class AnimationPlayer : MonoBehaviour
         }
     }
 
-    private void OnGUI()
-    {
-        GUILayout.Label($"{1 / Time.deltaTime} fps");
-    }
 }

@@ -146,10 +146,11 @@
     <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonBoolValidator.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\IStore\StringBuilderStore.cs" />
     <Compile Include="Assets\Scripts\Recording\PoseEstimationRecorder.cs" />
+    <Compile Include="Assets\Scripts\ScreenCapture.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Scripts\IO\MaterialImporter.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\LookAt\LookAtTargetSwitcher.cs" />
-    <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonDictionaryValidator.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\BlendShape\BlendShapeBindingMerger.cs" />
+    <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonDictionaryValidator.cs" />
     <Compile Include="Assets\VRM\DepthFirstScheduler\Scheduler\ThreadScheduler.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\Format\VRMVersionPartial.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\LookAt\Matrix4x4Extensions.cs" />
@@ -318,7 +319,6 @@
     <Compile Include="Assets\VRM\UniHumanoid\PoseModifier\IPoseModifier.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonArrayValidator.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\GenericCallUtility\GenericInvokeCallFactory.cs" />
-    <Compile Include="Assets\Scripts\ScreenCapture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Avatar\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />

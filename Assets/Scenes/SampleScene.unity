@@ -372,7 +372,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 4.37e-43, w: 1.02e-43}
+  m_BoundingSphereOverride: {x: 6.68e-43, y: -7.030627e-32, z: 6.67e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1201,7 +1201,7 @@ MonoBehaviour:
   ModelObject: {fileID: 3375630702964238123}
   VideoPlayer: {fileID: 769284634}
   timeScale: 1
-  fps: 30
+  fps: 20
   JointABs: []
   JointTransforms: []
 --- !u!1 &615228728 stripped
