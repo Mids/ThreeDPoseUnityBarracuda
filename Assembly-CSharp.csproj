@@ -62,6 +62,7 @@
     <Compile Include="Assets\VRM\UniHumanoid\Scenes\RuntimeBvhLoader.cs" />
     <Compile Include="Assets\VRM\DepthFirstScheduler\Scheduler\ThreadPoolScheduler.cs" />
     <Compile Include="Assets\VRM\ShaderProperty\Runtime\GLTF\Unlit_Transparent.cs" />
+    <Compile Include="Assets\Scripts\Recording\AnimationPlayer.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\Format\VRMFormat.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\SkinnedMeshUtility\BoneNormalizer.cs" />
     <Compile Include="Assets\VRM\UniHumanoid\Scripts\HumanPoseClip.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Assets\VRM\DepthFirstScheduler\MonitorQueue.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\MsgPack\Exceptions.cs" />
     <Compile Include="Assets\VRM\UniHumanoid\Scripts\Skeleton.cs" />
+    <Compile Include="Assets\Scripts\Recording\MotionData.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\Format\VRMMaterialExporter.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\Format\glTF_VRM_Meta.cs" />
     <Compile Include="Assets\VRM\MToon\MToon\Scripts\Utils.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="Assets\VRM\UniGLTF\Scripts\Format\glbTypes.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonBoolValidator.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\IStore\StringBuilderStore.cs" />
+    <Compile Include="Assets\Scripts\Recording\PoseEstimationRecorder.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Scripts\IO\MaterialImporter.cs" />
     <Compile Include="Assets\VRM\UniVRM\Scripts\LookAt\LookAtTargetSwitcher.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonDictionaryValidator.cs" />
@@ -168,6 +171,7 @@
     <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonSchemaValidator.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\Extensions\ParserExtensions.cs" />
     <Compile Include="Assets\VRM\UniHumanoid\Scripts\IBone.cs" />
+    <Compile Include="Assets\Scripts\Recording\JointData.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Scripts\Extensions\JsonParserExtensions.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\ListTreeNode\ListTreeNodeExtensions.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Scripts\IO\StaticMeshIntegrator.cs" />
@@ -250,6 +254,7 @@
     <Compile Include="Assets\Avatar\unity-chan!\Unity-chan! Model\Scripts\SpringManager.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\Json\JsonParser.cs" />
     <Compile Include="Assets\Avatar\unity-chan!\Unity-chan! Model\Scripts\RandomWind.cs" />
+    <Compile Include="Assets\Scripts\Recording\SkeletonData.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Scripts\Format\glTFTexture.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Scripts\Format\ExtensionsAndExtras\glTFMesh.Primitives.extras.targetNames.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\Toml\TomlParser.cs" />
@@ -313,11 +318,7 @@
     <Compile Include="Assets\VRM\UniHumanoid\PoseModifier\IPoseModifier.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonArrayValidator.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\GenericCallUtility\GenericInvokeCallFactory.cs" />
-    <Compile Include="Assets\Scripts\Recording\AnimationPlayer.cs" />
-    <Compile Include="Assets\Scripts\Recording\SkeletonData.cs" />
-    <Compile Include="Assets\Scripts\Recording\MotionData.cs" />
-    <Compile Include="Assets\Scripts\Recording\JointData.cs" />
-    <Compile Include="Assets\Scripts\Recording\PoseEstimationRecorder.cs" />
+    <Compile Include="Assets\Scripts\ScreenCapture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Avatar\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />

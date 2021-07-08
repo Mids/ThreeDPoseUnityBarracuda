@@ -14,6 +14,11 @@ public class AnimationPlayer : MonoBehaviour
 
     public float dt;
 
+    private void Start()
+    {
+        PlayCoroutine();
+    }
+
     public void PlayCoroutine()
     {
         dt = 1f / motion.fps;
@@ -45,5 +50,10 @@ public class AnimationPlayer : MonoBehaviour
 
             yield return new WaitForSeconds(dt);
         }
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Label($"{1 / Time.deltaTime} fps");
     }
 }
