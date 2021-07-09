@@ -372,7 +372,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.68e-43, y: -7.030627e-32, z: 6.67e-43, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0.000021927655, z: 4.5904e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1199,7 +1199,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModelObject: {fileID: 3375630702964238123}
+  folder: {fileID: 102900000, guid: 13a058642e100ad4aa72041806dd5cb4, type: 3}
   VideoPlayer: {fileID: 769284634}
+  videoList: []
   timeScale: 1
   fps: 20
   JointABs: []
@@ -1721,7 +1723,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769284633}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: a27459342c0817d4291cc992761bee3c, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 43d80c89c54aaab499bac569eb6ad266, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}

@@ -16,7 +16,10 @@ public class PoseEstimationRecorder : MonoBehaviour
     //private Animator animator;
     public GameObject ModelObject;
 
+    public DefaultAsset folder;
+    private string folderPath;
     public VideoPlayer VideoPlayer;
+    public List<VideoClip> videoList = new List<VideoClip>();
 
     private VNectModel vNectModel;
 
@@ -27,7 +30,7 @@ public class PoseEstimationRecorder : MonoBehaviour
     public int timeScale = 1;
     public float fps = 30f;
     private static float dt;
-    private float currentTime = 0f;
+    //private float currentTime = 0f;
 
     public List<ArticulationBody> JointABs;
     public List<Transform> JointTransforms;
@@ -46,11 +49,59 @@ public class PoseEstimationRecorder : MonoBehaviour
         JointTransforms = JointABs.Select(p => p.transform).ToList();
     }
 
+    /*
     public void Estimate()
     {
         StopAllCoroutines();
         StartCoroutine(CaptureTransform());
     }
+    */
+
+
+    public void LoadFolder()
+    {
+        folderPath = AssetDatabase.GetAssetPath(folder);
+        GetAllFilesInDirectory(folderPath);
+
+        //StopAllCoroutines();
+        StartCoroutine(CaptureTransform());
+    }
+
+    private void GetAllFilesInDirectory(string dirPath)
+    {
+        var info = new DirectoryInfo(dirPath);
+        var fileInfo = info.GetFiles("*.mp4", SearchOption.AllDirectories);
+
+        videoList.Clear();
+
+        foreach (var file in fileInfo)
+        {
+            var absolutePath = file.FullName;
+            absolutePath = absolutePath.Replace(Path.DirectorySeparatorChar, '/');
+            var relativePath = "";
+            if (absolutePath.StartsWith(Application.dataPath))
+                relativePath = "Assets" + absolutePath.Substring(Application.dataPath.Length);
+            var videoFile = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Video/data/");
+
+            // 얘가 null 이 나오네
+            var clips = AssetDatabase.LoadAllAssetRepresentationsAtPath(relativePath);
+            //    .Where(p => p as VideoClip != null);
+
+            //var clips = AssetDatabase.LoadAllAssetRepresentationsAtPath("Assets/Video/data/");
+
+            foreach (var clip in clips)
+            {
+                var vid = clip as VideoClip;
+
+                //if (animClip != default && animClip.isHumanMotion)
+                //    animList.Add(animClip);
+
+                videoList.Add(vid);
+            }
+        }
+    }
+
+
 
     private IEnumerator CaptureTransform()
     {
@@ -77,14 +128,14 @@ public class PoseEstimationRecorder : MonoBehaviour
             var skeletonData = GetSkeletonData(frame++);
             motionData.data.Add(skeletonData);
 
-            currentTime += dt;
+            //currentTime += dt;
         }
 
         CalculateVelocity(motionData);
 
         motionData.Save();
 
-        currentTime = 0f;
+        //currentTime = 0f;
 
         EditorApplication.ExitPlaymode();
         /*
@@ -249,6 +300,8 @@ public class PoseEstimationRecorder : MonoBehaviour
     {
         GUILayout.Label($"{1 / Time.deltaTime} fps");
     }
+
+
 }
 
 

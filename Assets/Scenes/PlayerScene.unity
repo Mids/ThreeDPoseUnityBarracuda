@@ -884,7 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9573f34175bed342b5fdf2a9a7658b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motion: {fileID: 11400000, guid: 28f9e6bd18998874d9c2c804b98fe5b2, type: 2}
+  motion: {fileID: 11400000, guid: a131ad7faef3cda498f3ca86ea52d7b6, type: 2}
   JointABs:
   - {fileID: 772214450}
   - {fileID: 1396981807}

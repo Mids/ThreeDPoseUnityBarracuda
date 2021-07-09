@@ -9,6 +9,6 @@ public class EstimationRecorderEditor : Editor
         DrawDefaultInspector();
 
         if (GUILayout.Button("Export"))
-            (target as PoseEstimationRecorder)?.Estimate();
+            (target as PoseEstimationRecorder)?.LoadFolder();
     }
 }
