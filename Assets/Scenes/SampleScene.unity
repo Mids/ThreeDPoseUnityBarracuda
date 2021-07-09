@@ -372,7 +372,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.255e-42, y: 1.02e-43, z: 0.03125, w: 0}
+  m_BoundingSphereOverride: {x: 4.264e-42, y: -1.5532028e+34, z: 6.841744e-39, w: -4.6002462e-27}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1201,7 +1201,7 @@ MonoBehaviour:
   ModelObject: {fileID: 3375630702964238123}
   folder: {fileID: 102900000, guid: 13a058642e100ad4aa72041806dd5cb4, type: 3}
   VideoPlayer: {fileID: 769284634}
-  videoList: []
+  videoURLs: []
   timeScale: 1
   fps: 20
   JointABs: []
@@ -1738,7 +1738,7 @@ VideoPlayer:
   m_AudioOutputMode: 0
   m_TargetAudioSources: []
   m_DirectAudioVolumes: []
-  m_Url: Assets/Video/data/onegai1.mp4
+  m_Url: 
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0

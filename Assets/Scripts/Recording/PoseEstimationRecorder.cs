@@ -19,7 +19,7 @@ public class PoseEstimationRecorder : MonoBehaviour
     public DefaultAsset folder;
     private string folderPath;
     public VideoPlayer VideoPlayer;
-    public List<VideoClip> videoList = new List<VideoClip>();
+    public List<string> videoURLs = new List<string>();
 
     private VNectModel vNectModel;
 
@@ -72,7 +72,7 @@ public class PoseEstimationRecorder : MonoBehaviour
         var info = new DirectoryInfo(dirPath);
         var fileInfo = info.GetFiles("*.mp4", SearchOption.AllDirectories);
 
-        videoList.Clear();
+        videoURLs.Clear();
 
         foreach (var file in fileInfo)
         {
@@ -81,23 +81,7 @@ public class PoseEstimationRecorder : MonoBehaviour
             var relativePath = "";
             if (absolutePath.StartsWith(Application.dataPath))
                 relativePath = "Assets" + absolutePath.Substring(Application.dataPath.Length);
-            var videoFile = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Video/data/");
-
-            // 얘가 null 이 나오네
-            var clips = AssetDatabase.LoadAllAssetRepresentationsAtPath(relativePath);
-            //    .Where(p => p as VideoClip != null);
-
-            //var clips = AssetDatabase.LoadAllAssetRepresentationsAtPath("Assets/Video/data/");
-
-            foreach (var clip in clips)
-            {
-                var vid = clip as VideoClip;
-
-                //if (animClip != default && animClip.isHumanMotion)
-                //    animList.Add(animClip);
-
-                videoList.Add(vid);
-            }
+            videoURLs.Add(relativePath);
         }
     }
 
@@ -107,6 +91,49 @@ public class PoseEstimationRecorder : MonoBehaviour
     {
         Debug.Log("Started Recording");
         var t = ModelObject.transform;
+
+        foreach (var vid in videoURLs)
+        {
+            //t.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            VideoPlayer.url = vid;
+            //VideoPlayer.frame = 0;
+
+            // Set Info
+            var motionData = ScriptableObject.CreateInstance<MotionData>();
+            int frameCount = (int)VideoPlayer.frameCount;
+            motionData.Init(frameCount);
+            motionData.characterName = t.parent.name;
+            motionData.motionName = Path.GetFileNameWithoutExtension(vid);
+            motionData.fps = fps;
+
+            int frame = 0;
+
+            VideoPlayer.Play();
+            while (!VideoPlayer.isPlaying)
+            {
+                print("Preparing video...");
+                yield return null;
+            }
+            VideoPlayer.time = 0;
+
+
+            while (VideoPlayer.isPlaying)
+            {
+                // Set rotation & position to the character
+                yield return new WaitForEndOfFrame();
+
+                var skeletonData = GetSkeletonData(frame++);
+                motionData.data.Add(skeletonData);
+            }
+
+            CalculateVelocity(motionData);
+
+            motionData.Save();
+        }
+
+        EditorApplication.ExitPlaymode();
+
+        /*
         // animator.speed = 0f;
         VideoPlayer.time = 2f;
         
@@ -134,46 +161,10 @@ public class PoseEstimationRecorder : MonoBehaviour
         CalculateVelocity(motionData);
 
         motionData.Save();
-
         //currentTime = 0f;
 
-        EditorApplication.ExitPlaymode();
-        /*
-        foreach (var anim in animList)
-        {
-            print(anim.name);
-
-            t.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            tOverrideController["Handshake_001"] = anim;
-
-            // Set Info
-            var motionData = ScriptableObject.CreateInstance<MotionData>();
-            motionData.Init(2 + (int)(anim.length / dt));
-            motionData.characterName = t.parent.name;
-            motionData.motionName = anim.name;
-            motionData.fps = fps;
-
-            int frame = 0;
-
-            while (currentTime < anim.length)
-            {
-                animator.Play("CurrentMotion", 0, currentTime / anim.length);
-
-                yield return new WaitForEndOfFrame();
-
-                var skeletonData = GetSkeletonData(frame++);
-                motionData.data.Add(skeletonData);
-
-                currentTime += dt;
-            }
-
-            CalculateVelocity(motionData);
-
-            motionData.Save();
-
-            currentTime = 0f;
-        }
         */
+
     }
 
     private void CalculateVelocity(MotionData motionData)
