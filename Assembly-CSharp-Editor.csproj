@@ -114,8 +114,10 @@
     <Compile Include="Assets\VRM\UniJSON\Editor\Tests\Utf8StringTest.cs" />
     <Compile Include="Assets\VRM\UniVRM\Editor\SkinnedMeshUtility\SkinnedMeshUtility.cs" />
     <Compile Include="Assets\VRM\UniGLTF\Editor\Tests\JsonDeserializeTests.cs" />
+    <Compile Include="Assets\Scripts\Editor\AnimationPlayerEditor.cs" />
     <Compile Include="Assets\VRM\UniHumanoid\Editor\Tests\BvhLoaderTests.cs" />
     <Compile Include="Assets\VRM\UniJSON\Editor\Tests\MsgPack\IntTest.cs" />
+    <Compile Include="Assets\Scripts\Editor\EstimationRecorderEditor.cs" />
     <Compile Include="Assets\VRM\MToon\MToon\Editor\EditorUtils.cs" />
     <Compile Include="Assets\VRM\UniVRM\Editor\BlendShape\PreviewEditor.cs" />
     <Compile Include="Assets\VRM\UniVRM\Editor\Format\VRMExportObjectEditor.cs" />
@@ -128,8 +130,6 @@
     <Compile Include="Assets\VRM\UniVRM\Editor\VRMMonoBehaviourComparator.cs" />
     <Compile Include="Assets\VRM\UniVRM\Editor\BlendShape\SerializedBlendShapeClipEditor.cs" />
     <Compile Include="Assets\VRM\UniVRM\Editor\BlendShape\BlendShapeClipEditor.cs" />
-    <Compile Include="Assets\Scripts\Editor\AnimationPlayerEditor.cs" />
-    <Compile Include="Assets\Scripts\Editor\EstimationRecorderEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

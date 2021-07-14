@@ -6,9 +6,11 @@ public class EstimationRecorderEditor : Editor
 {
     public override void OnInspectorGUI()
     {
+        PoseEstimationRecorder poseEstimationRecorder = (PoseEstimationRecorder)target;
         DrawDefaultInspector();
 
         if (GUILayout.Button("Export"))
-            (target as PoseEstimationRecorder)?.LoadFolder();
+            (target as PoseEstimationRecorder)?.StartRecordingEstimation();
+            //poseEstimationRecorder.StartRecordingEstimation();
     }
 }

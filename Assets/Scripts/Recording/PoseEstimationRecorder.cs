@@ -15,10 +15,13 @@ public class PoseEstimationRecorder : MonoBehaviour
 
     //private Animator animator;
     public GameObject ModelObject;
-
     public DefaultAsset folder;
+
+
+
     private string folderPath;
-    public VideoPlayer VideoPlayer;
+    public VideoPlayer videoPlayer;
+    public VideoCapture videoCapture;
     public List<string> videoURLs = new List<string>();
 
     private VNectModel vNectModel;
@@ -49,22 +52,29 @@ public class PoseEstimationRecorder : MonoBehaviour
         JointTransforms = JointABs.Select(p => p.transform).ToList();
     }
 
-    /*
-    public void Estimate()
-    {
-        StopAllCoroutines();
-        StartCoroutine(CaptureTransform());
-    }
-    */
 
+    public void StartRecordingEstimation()
+    {
+        print("StartRecordingEstimation");
+        if (videoCapture.UseWebCam)
+        {
+            StopAllCoroutines();
+            StartCoroutine(WebcamCaptureTransform());
+        }
+        else
+        {
+            LoadFolder();
+        }
+
+    }
 
     public void LoadFolder()
     {
         folderPath = AssetDatabase.GetAssetPath(folder);
         GetAllFilesInDirectory(folderPath);
 
-        //StopAllCoroutines();
-        StartCoroutine(CaptureTransform());
+        StopAllCoroutines();
+        StartCoroutine(VideoCaptureTransform());
     }
 
     private void GetAllFilesInDirectory(string dirPath)
@@ -85,22 +95,54 @@ public class PoseEstimationRecorder : MonoBehaviour
         }
     }
 
-
-
-    private IEnumerator CaptureTransform()
+    private IEnumerator WebcamCaptureTransform()
     {
-        Debug.Log("Started Recording");
+        print("Started recording from webcam");
+        var t = ModelObject.transform;
+        int sec = 30;
+
+        // Set Info
+        var motionData = ScriptableObject.CreateInstance<MotionData>();
+        // TODO: Record for 30 seconds for now
+        int frameCount = (int)fps * sec;
+        motionData.Init(frameCount);
+        motionData.characterName = t.parent.name;
+        // TODO: Need to find a way to effectively name the output
+        motionData.motionName = "webcam";
+        motionData.fps = fps;
+
+        int frame = 0;
+        while (EditorApplication.isPlaying && frame < frameCount)
+        {
+            // Set rotation & position to the character
+            yield return new WaitForEndOfFrame();
+
+            var skeletonData = GetSkeletonData(frame++);
+            motionData.data.Add(skeletonData);
+            frame++;
+        }
+
+        CalculateVelocity(motionData);
+
+        motionData.Save();
+
+        EditorApplication.ExitPlaymode();
+    }
+
+    private IEnumerator VideoCaptureTransform()
+    {
+        Debug.Log("Started recording from video");
         var t = ModelObject.transform;
 
         foreach (var vid in videoURLs)
         {
             //t.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            VideoPlayer.url = vid;
+            videoPlayer.url = vid;
             //VideoPlayer.frame = 0;
 
             // Set Info
             var motionData = ScriptableObject.CreateInstance<MotionData>();
-            int frameCount = (int)VideoPlayer.frameCount;
+            int frameCount = (int)videoPlayer.frameCount;
             motionData.Init(frameCount);
             motionData.characterName = t.parent.name;
             motionData.motionName = Path.GetFileNameWithoutExtension(vid);
@@ -108,16 +150,16 @@ public class PoseEstimationRecorder : MonoBehaviour
 
             int frame = 0;
 
-            VideoPlayer.Play();
-            while (!VideoPlayer.isPlaying)
+            videoPlayer.Play();
+            while (!videoPlayer.isPlaying)
             {
                 print("Preparing video...");
                 yield return null;
             }
-            VideoPlayer.time = 0;
+            videoPlayer.time = 0;
 
 
-            while (VideoPlayer.isPlaying)
+            while (videoPlayer.isPlaying)
             {
                 // Set rotation & position to the character
                 yield return new WaitForEndOfFrame();

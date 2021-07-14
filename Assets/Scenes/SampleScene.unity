@@ -372,7 +372,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.264e-42, y: -1.5532028e+34, z: 6.841744e-39, w: -4.6002462e-27}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -2.0490894}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1200,7 +1200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModelObject: {fileID: 3375630702964238123}
   folder: {fileID: 102900000, guid: 13a058642e100ad4aa72041806dd5cb4, type: 3}
-  VideoPlayer: {fileID: 769284634}
+  videoPlayer: {fileID: 0}
+  videoCapture: {fileID: 1873549733}
   videoURLs: []
   timeScale: 1
   fps: 20
@@ -4236,7 +4237,7 @@ MonoBehaviour:
   _layer:
     serializedVersion: 2
     m_Bits: 4
-  UseWebCam: 0
+  UseWebCam: 1
   WebCamIndex: 0
   VideoPlayer: {fileID: 769284634}
 --- !u!23 &1873549734
