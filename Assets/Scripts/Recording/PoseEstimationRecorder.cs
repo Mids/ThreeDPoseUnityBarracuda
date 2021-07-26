@@ -50,6 +50,9 @@ public class PoseEstimationRecorder : MonoBehaviour
 
         Assert.IsTrue(JointABs[0].isRoot);
         JointTransforms = JointABs.Select(p => p.transform).ToList();
+
+
+    
     }
 
 
@@ -157,7 +160,7 @@ public class PoseEstimationRecorder : MonoBehaviour
                 yield return null;
             }
             videoPlayer.time = 0;
-
+            yield return new WaitForSeconds(1);
 
             while (videoPlayer.isPlaying)
             {
