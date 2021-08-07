@@ -102,7 +102,7 @@ public class PoseEstimationRecorder : MonoBehaviour
     {
         print("Started recording from webcam");
         var t = ModelObject.transform;
-        int sec = 30;
+        int sec = 10;
 
         // Set Info
         var motionData = ScriptableObject.CreateInstance<MotionData>();
@@ -111,7 +111,7 @@ public class PoseEstimationRecorder : MonoBehaviour
         motionData.Init(frameCount);
         motionData.characterName = t.parent.name;
         // TODO: Need to find a way to effectively name the output
-        motionData.motionName = "webcam";
+        motionData.motionName = "webcam1";
         motionData.fps = fps;
 
         int frame = 0;
@@ -122,7 +122,6 @@ public class PoseEstimationRecorder : MonoBehaviour
 
             var skeletonData = GetSkeletonData(frame++);
             motionData.data.Add(skeletonData);
-            frame++;
         }
 
         CalculateVelocity(motionData);
