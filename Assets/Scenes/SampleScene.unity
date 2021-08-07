@@ -1186,6 +1186,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3375630702964238122}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &572709890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572709889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f0d8718bad4fa46bcd78bda0288749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capture: 0
+  capturePath: D:\Data\3DPoseEstimation\JSJ_2
 --- !u!114 &572709891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1204,7 +1218,7 @@ MonoBehaviour:
   videoCapture: {fileID: 1873549733}
   videoURLs: []
   timeScale: 1
-  fps: 20
+  fps: 10
   JointABs: []
   JointTransforms: []
 --- !u!1 &615228728 stripped
@@ -4653,51 +4667,6 @@ ArticulationBody:
   m_Immovable: 0
   m_UseGravity: 0
   m_CollisionDetectionMode: 0
---- !u!1 &2065777006
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2065777008}
-  - component: {fileID: 2065777007}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2065777007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065777006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f0d8718bad4fa46bcd78bda0288749, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  capture: 0
-  capturePath: C:\Users\VML\Desktop\InUse\3DPoseBarracuda\Girls
---- !u!4 &2065777008
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065777006}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2074468643
 GameObject:
   m_ObjectHideFlags: 0
