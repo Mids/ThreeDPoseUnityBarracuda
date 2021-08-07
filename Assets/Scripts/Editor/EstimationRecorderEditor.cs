@@ -11,6 +11,5 @@ public class EstimationRecorderEditor : Editor
 
         if (GUILayout.Button("Export"))
             (target as PoseEstimationRecorder)?.StartRecordingEstimation();
-            //poseEstimationRecorder.StartRecordingEstimation();
     }
 }

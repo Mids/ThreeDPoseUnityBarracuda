@@ -10,30 +10,17 @@ using UnityEngine.Video;
 
 public class PoseEstimationRecorder : MonoBehaviour
 {
-    //public DefaultAsset folder;
-    //private string folderPath;
-
-    //private Animator animator;
     public GameObject ModelObject;
     public DefaultAsset folder;
-
-
 
     private string folderPath;
     public VideoPlayer videoPlayer;
     public VideoCapture videoCapture;
     public List<string> videoURLs = new List<string>();
 
-    private VNectModel vNectModel;
-
-    //public List<AnimationClip> animList = new List<AnimationClip>();
-
-    //public AnimatorOverrideController tOverrideController;
-
     public int timeScale = 1;
     public float fps = 30f;
     private static float dt;
-    //private float currentTime = 0f;
 
     public List<ArticulationBody> JointABs;
     public List<Transform> JointTransforms;
@@ -41,24 +28,18 @@ public class PoseEstimationRecorder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        vNectModel = ModelObject.GetComponent<VNectModel>();
-
-        //Time.timeScale = timeScale;
         Application.targetFrameRate = 30 * timeScale;
         dt = 1f / fps;
         JointABs = ModelObject.GetComponentsInChildren<ArticulationBody>().ToList();
 
         Assert.IsTrue(JointABs[0].isRoot);
         JointTransforms = JointABs.Select(p => p.transform).ToList();
-
-
-    
     }
 
 
     public void StartRecordingEstimation()
     {
-        print("StartRecordingEstimation");
+        print("Start Recording Estimation");
         if (videoCapture.UseWebCam)
         {
             StopAllCoroutines();
@@ -117,7 +98,6 @@ public class PoseEstimationRecorder : MonoBehaviour
         int frame = 0;
         while (EditorApplication.isPlaying && frame < frameCount)
         {
-            // Set rotation & position to the character
             yield return new WaitForEndOfFrame();
 
             var skeletonData = GetSkeletonData(frame++);
@@ -138,9 +118,7 @@ public class PoseEstimationRecorder : MonoBehaviour
 
         foreach (var vid in videoURLs)
         {
-            //t.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
             videoPlayer.url = vid;
-            //VideoPlayer.frame = 0;
 
             // Set Info
             var motionData = ScriptableObject.CreateInstance<MotionData>();
@@ -163,7 +141,6 @@ public class PoseEstimationRecorder : MonoBehaviour
 
             while (videoPlayer.isPlaying)
             {
-                // Set rotation & position to the character
                 yield return new WaitForEndOfFrame();
 
                 var skeletonData = GetSkeletonData(frame++);
@@ -176,39 +153,6 @@ public class PoseEstimationRecorder : MonoBehaviour
         }
 
         EditorApplication.ExitPlaymode();
-
-        /*
-        // animator.speed = 0f;
-        VideoPlayer.time = 2f;
-        
-        //t.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-        var motionData = ScriptableObject.CreateInstance<MotionData>();
-        int frameCount = (int)VideoPlayer.frameCount;
-        motionData.Init(frameCount);
-        motionData.characterName = t.parent.name;
-        motionData.motionName = VideoPlayer.clip.name;
-        motionData.fps = fps;
-
-        int frame = 0;
-
-        while(VideoPlayer.time < VideoPlayer.clip.length - 0.01f)
-        {
-            // Set rotation & position to the character
-            yield return new WaitForEndOfFrame();
-
-            var skeletonData = GetSkeletonData(frame++);
-            motionData.data.Add(skeletonData);
-
-            //currentTime += dt;
-        }
-
-        CalculateVelocity(motionData);
-
-        motionData.Save();
-        //currentTime = 0f;
-
-        */
-
     }
 
     private void CalculateVelocity(MotionData motionData)
@@ -338,49 +282,3 @@ public class PoseEstimationRecorder : MonoBehaviour
 
 
 }
-
-
-/*
-public void LoadFolder()
-{
-    if (tOverrideController == default)
-    {
-        tOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-        animator.runtimeAnimatorController = tOverrideController;
-    }
-
-    folderPath = AssetDatabase.GetAssetPath(folder);
-    GetAllFilesInDirectory(folderPath);
-
-    StartCoroutine(CaptureTransform());
-}
-
-private void GetAllFilesInDirectory(string dirPath)
-{
-    var info = new DirectoryInfo(dirPath);
-    var fileInfo = info.GetFiles("*.fbx", SearchOption.AllDirectories);
-
-    animList.Clear();
-
-    foreach (var file in fileInfo)
-    {
-        var absolutePath = file.FullName;
-        absolutePath = absolutePath.Replace(Path.DirectorySeparatorChar, '/');
-        var relativePath = "";
-        if (absolutePath.StartsWith(Application.dataPath))
-            relativePath = "Assets" + absolutePath.Substring(Application.dataPath.Length);
-        var fbxFile = AssetDatabase.LoadAssetAtPath<GameObject>(relativePath);
-
-        var clips = AssetDatabase.LoadAllAssetRepresentationsAtPath(relativePath)
-            .Where(p => p as AnimationClip != null);
-
-        foreach (var clip in clips)
-        {
-            var animClip = clip as AnimationClip;
-
-            if (animClip != default && animClip.isHumanMotion)
-                animList.Add(animClip);
-        }
-    }
-}
-*/
