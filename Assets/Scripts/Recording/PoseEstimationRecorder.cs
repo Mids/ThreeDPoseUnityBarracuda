@@ -102,16 +102,16 @@ public class PoseEstimationRecorder : MonoBehaviour
     {
         print("Started recording from webcam");
         var t = ModelObject.transform;
-        int sec = 10;
+        int duration = 10;
+        int frameCount = (int)fps * duration;
 
         // Set Info
         var motionData = ScriptableObject.CreateInstance<MotionData>();
-        // TODO: Record for 30 seconds for now
-        int frameCount = (int)fps * sec;
         motionData.Init(frameCount);
         motionData.characterName = t.parent.name;
-        // TODO: Need to find a way to effectively name the output
-        motionData.motionName = "webcam1";
+        string dateTime = System.DateTime.Now.ToString("yy.MM.dd.HH.mm");
+        motionData.motionName = "webcam_" + dateTime;
+        print(motionData.motionName);
         motionData.fps = fps;
 
         int frame = 0;
