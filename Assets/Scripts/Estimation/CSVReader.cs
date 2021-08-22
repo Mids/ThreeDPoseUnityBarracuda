@@ -58,42 +58,36 @@ public class CSVReader
      3. Return list of FrameData as Result
      */
 
-    public static List<Dictionary<string, object>> Read(string file)
+ 
+    //public List<FrameData> ReadFrameData(string file)
+    public List<FrameData> ReadFrameData(TextAsset data)
     {
-        var list = new List<Dictionary<string, object>>();
-        TextAsset data = Resources.Load(file) as TextAsset;
+        var result = new List<FrameData>();
+        //TextAsset data = Resources.Load("Assets/Resources/videopose_traj_result.csv") as TextAsset;
 
-        var lines = Regex.Split(data.text, LINE_SPLIT_RE);
+        var frames = Regex.Split(data.text, LINE_SPLIT_RE);
 
-        if (lines.Length <= 1) return list;
+        if (frames.Length <= 1) return result;
 
-        var header = Regex.Split(lines[0], SPLIT_RE);
-        for (var i = 1; i < lines.Length; i++)
+        for (int i = 0; i < frames.Length; i++)
         {
+            var values = Regex.Split(frames[i], SPLIT_RE);
+            int n = values.Length;
 
-            var values = Regex.Split(lines[i], SPLIT_RE);
-            if (values.Length == 0 || values[0] == "") continue;
+            if (n == 0 || values[0] == "") continue;
 
-            var entry = new Dictionary<string, object>();
-            for (var j = 0; j < header.Length && j < values.Length; j++)
+            List<Vector3> jointPositions = new List<Vector3>(n);
+            for (int j = 0; j < n / 3; j++)
             {
-                string value = values[j];
-                value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
-                object finalvalue = value;
-                int n;
-                float f;
-                if (int.TryParse(value, out n))
-                {
-                    finalvalue = n;
-                }
-                else if (float.TryParse(value, out f))
-                {
-                    finalvalue = f;
-                }
-                entry[header[j]] = finalvalue;
+                Vector3 joint;
+                joint.x = float.Parse(values[3 * j]);
+                joint.y = float.Parse(values[3 * j + 1]);
+                joint.z = float.Parse(values[3 * j + 2]);
+                jointPositions.Add(joint);
             }
-            list.Add(entry);
+            FrameData frame = new FrameData(i, jointPositions);
+            result.Add(frame);
         }
-        return list;
+        return result;
     }
 }
