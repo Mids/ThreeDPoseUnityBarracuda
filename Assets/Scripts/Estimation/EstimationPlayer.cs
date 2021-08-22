@@ -17,26 +17,23 @@ public class EstimationPlayer : MonoBehaviour
 
     public void PlayCoroutine()
     {
-        CSVReader reader = new CSVReader();
-        result = reader.ReadFrameData(data);
-        
-        // get motion info
-        frame = 0;
-        nof = result.Count;
-        noj = result[0].jointPositions.Count;
-        dt = 1f / fps;
+        // Read data if empty
+        if (result == null)
+            ReadData();
 
-        // initiate joints
-        if(joints != null)
-            ClearArray(joints);
-        joints = new GameObject[noj];
-        for(int j = 0; j < noj; j++)
+        // Initiate spheres if empty
+        if (joints == null)
         {
-            var joint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            joint.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-            var jointRenderer = joint.GetComponent<Renderer>();
-            jointRenderer.material.SetColor("_Color", Color.red);
-            joints[j] = joint;
+             
+            joints = new GameObject[noj];
+            for (int j = 0; j < noj; j++)
+            {
+                var joint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                joint.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                var jointRenderer = joint.GetComponent<Renderer>();
+                jointRenderer.material.SetColor("_Color", Color.red);
+                joints[j] = joint;
+            }
         }
 
         StartCoroutine(Play());
@@ -60,14 +57,16 @@ public class EstimationPlayer : MonoBehaviour
        
     }
 
-    public static void ClearArray(GameObject[] array)
+    public void ReadData()
     {
-        foreach (GameObject obj in array)
-        {
-            if (obj != null)
-            {
-                Destroy(obj);
-            }
-        }
+        CSVReader reader = new CSVReader();
+        result = reader.ReadFrameData(data);
+
+        // get motion info
+        frame = 0;
+        nof = result.Count;
+        noj = result[0].jointPositions.Count;
+        dt = 1f / fps;
     }
+
 }
