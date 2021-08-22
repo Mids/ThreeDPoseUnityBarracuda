@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataImporter : MonoBehaviour
+public class EstimationPlayer : MonoBehaviour
 {
     public TextAsset data;
     public List<FrameData> result;
+    
     private GameObject[] joints;
     private int frame;
     private int nof;
     private int noj;
 
-    void Start()
+    public float fps=30;
+    public float dt;
+
+    public void PlayCoroutine()
     {
         CSVReader reader = new CSVReader();
         result = reader.ReadFrameData(data);
@@ -20,8 +24,11 @@ public class DataImporter : MonoBehaviour
         frame = 0;
         nof = result.Count;
         noj = result[0].jointPositions.Count;
-        
+        dt = 1f / fps;
+
         // initiate joints
+        if(joints != null)
+            ClearArray(joints);
         joints = new GameObject[noj];
         for(int j = 0; j < noj; j++)
         {
@@ -32,18 +39,35 @@ public class DataImporter : MonoBehaviour
             joints[j] = joint;
         }
 
+        StartCoroutine(Play());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Draw estimation joint positions
-        for(int j = 0; j < noj; j++)
-        {
-            Vector3 pos = 5.0f * result[frame].jointPositions[j];
-            joints[j].transform.position = pos;
-        }
 
-        frame = (frame + 1) % nof;
+    private IEnumerator Play()
+    {
+        foreach (var frameData in result)
+        {
+            // Visualize estimated joint positions
+            for (int j = 0; j < noj; j++)
+            {
+                Vector3 pos = 5.0f * frameData.jointPositions[j];
+                pos.y *= -1;
+                joints[j].transform.position = pos;
+            }
+
+            yield return new WaitForSeconds(dt);
+        }
+       
+    }
+
+    public static void ClearArray(GameObject[] array)
+    {
+        foreach (GameObject obj in array)
+        {
+            if (obj != null)
+            {
+                Destroy(obj);
+            }
+        }
     }
 }
