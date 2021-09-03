@@ -8,12 +8,14 @@ public class EstimationPlayer : MonoBehaviour
     public List<FrameData> result;
     
     private GameObject[] joints;
+    private GameObject joint_vis;
     private int frame;
     private int nof;
     private int noj;
 
     public float fps=30;
     public float dt;
+    public int vis_index = 0;
 
     public void PlayCoroutine()
     {
@@ -36,6 +38,14 @@ public class EstimationPlayer : MonoBehaviour
             }
         }
 
+        if(joint_vis == null)
+        {
+            joint_vis = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            joint_vis.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            var jointRenderer = joint_vis.GetComponent<Renderer>();
+            jointRenderer.material.SetColor("_Color", Color.blue);
+        }
+
         StartCoroutine(Play());
     }
 
@@ -52,6 +62,10 @@ public class EstimationPlayer : MonoBehaviour
                 joints[j].transform.position = pos;
             }
 
+            Vector3 current = 5.0f * frameData.jointPositions[vis_index];
+            current.y *= -1;
+            joint_vis.transform.position = current;
+
             yield return new WaitForSeconds(dt);
         }
        
@@ -66,6 +80,8 @@ public class EstimationPlayer : MonoBehaviour
         frame = 0;
         nof = result.Count;
         noj = result[0].jointPositions.Count;
+        print(nof);
+        print(noj);
         dt = 1f / fps;
     }
 

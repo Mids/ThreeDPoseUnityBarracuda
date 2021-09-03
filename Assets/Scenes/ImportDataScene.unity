@@ -248,7 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 4900000, guid: 312af7cd53d65ce4c954bcf83cabae3a, type: 3}
   fps: 30
-  dt: 0
+  dt: 0.033333335
+  vis_index: 2
 --- !u!4 &670100142
 Transform:
   m_ObjectHideFlags: 0
