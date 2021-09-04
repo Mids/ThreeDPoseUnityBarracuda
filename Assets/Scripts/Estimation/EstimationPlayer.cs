@@ -85,14 +85,97 @@ public class EstimationPlayer : MonoBehaviour
     }
 
 
+    public VNectModel VNectModel;
+    private VNectModel.JointPoint[] jointPoints;
+
     public void PlayCoroutine()
     {
+        // Read data if empty
+        if (result == null)
+        {
+            ReadData();
+            print("Read all data!");
+        }
+
+        // Init model with jointPoints
+        jointPoints = VNectModel.Init();
+
+
         StartCoroutine(Play());
     }
 
     private IEnumerator Play()
     {
+        foreach (var frameData in result)
+        {
+            frame = frameData.frameNum;
+
+            // Set Now3D values for all jointPoints
+            SetJointPositions(jointPoints, frame);
+
+            // Kalman..
+            foreach (var jp in jointPoints)
+            {
+                KalmanUpdate(jp);
+            }
+        }
         yield return new WaitForSeconds(dt);
+    }
+
+    private void SetJointPositions(VNectModel.JointPoint[] jointPoints, int frame)
+    {
+        jointPoints[PositionIndex.hip.Int()].Now3D = -5.0f * result[frame].jointPositions[0];
+        jointPoints[PositionIndex.spine.Int()].Now3D = -5.0f * result[frame].jointPositions[7];
+        jointPoints[PositionIndex.neck.Int()].Now3D = -5.0f * result[frame].jointPositions[8];
+        //jointPoints[PositionIndex.Nose.Int()].Now3D = result[frame].jointPositions[9];
+        jointPoints[PositionIndex.head.Int()].Now3D = -5.0f * result[frame].jointPositions[10];
+
+        jointPoints[PositionIndex.rThighBend.Int()].Now3D = -5.0f * result[frame].jointPositions[1];
+        jointPoints[PositionIndex.rShin.Int()].Now3D = -5.0f * result[frame].jointPositions[2];
+        jointPoints[PositionIndex.rFoot.Int()].Now3D = -5.0f * result[frame].jointPositions[3];
+        
+        jointPoints[PositionIndex.lThighBend.Int()].Now3D = -5.0f * result[frame].jointPositions[4];
+        jointPoints[PositionIndex.lShin.Int()].Now3D = -5.0f * result[frame].jointPositions[5];
+        jointPoints[PositionIndex.lFoot.Int()].Now3D = -5.0f * result[frame].jointPositions[6];
+
+        jointPoints[PositionIndex.lShldrBend.Int()].Now3D = -5.0f * result[frame].jointPositions[11];
+        jointPoints[PositionIndex.lForearmBend.Int()].Now3D = -5.0f * result[frame].jointPositions[12];
+        jointPoints[PositionIndex.lHand.Int()].Now3D = -5.0f * result[frame].jointPositions[13];
+
+        jointPoints[PositionIndex.rShldrBend.Int()].Now3D = -5.0f * result[frame].jointPositions[14];
+        jointPoints[PositionIndex.rForearmBend.Int()].Now3D = -5.0f * result[frame].jointPositions[15];
+        jointPoints[PositionIndex.rHand.Int()].Now3D = -5.0f * result[frame].jointPositions[16];
+
+    }
+
+    /// <summary>
+    /// For Kalman filter parameter Q
+    /// </summary>
+    public float KalmanParamQ;
+
+    /// <summary>
+    /// For Kalman filter parameter R
+    /// </summary>
+    public float KalmanParamR;
+
+
+    void KalmanUpdate(VNectModel.JointPoint measurement)
+    {
+        measurementUpdate(measurement);
+        measurement.Pos3D.x = measurement.X.x + (measurement.Now3D.x - measurement.X.x) * measurement.K.x;
+        measurement.Pos3D.y = measurement.X.y + (measurement.Now3D.y - measurement.X.y) * measurement.K.y;
+        measurement.Pos3D.z = measurement.X.z + (measurement.Now3D.z - measurement.X.z) * measurement.K.z;
+        measurement.X = measurement.Pos3D;
+    }
+
+    void measurementUpdate(VNectModel.JointPoint measurement)
+    {
+        measurement.K.x = (measurement.P.x + KalmanParamQ) / (measurement.P.x + KalmanParamQ + KalmanParamR);
+        measurement.K.y = (measurement.P.y + KalmanParamQ) / (measurement.P.y + KalmanParamQ + KalmanParamR);
+        measurement.K.z = (measurement.P.z + KalmanParamQ) / (measurement.P.z + KalmanParamQ + KalmanParamR);
+        measurement.P.x = KalmanParamR * (measurement.P.x + KalmanParamQ) / (KalmanParamR + measurement.P.x + KalmanParamQ);
+        measurement.P.y = KalmanParamR * (measurement.P.y + KalmanParamQ) / (KalmanParamR + measurement.P.y + KalmanParamQ);
+        measurement.P.z = KalmanParamR * (measurement.P.z + KalmanParamQ) / (KalmanParamR + measurement.P.z + KalmanParamQ);
     }
 
 
