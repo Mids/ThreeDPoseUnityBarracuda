@@ -17,7 +17,21 @@ public class EstimationPlayer : MonoBehaviour
     public float dt;
     public int vis_index = 0;
 
-    public void PlayCoroutine()
+    public void ReadData()
+    {
+        CSVReader reader = new CSVReader();
+        result = reader.ReadFrameData(data);
+
+        // get motion info
+        frame = 0;
+        nof = result.Count;
+        noj = result[0].jointPositions.Count;
+        print(nof);
+        print(noj);
+        dt = 1f / fps;
+    }
+
+    public void VisualizeCoroutine()
     {
         // Read data if empty
         if (result == null)
@@ -26,7 +40,6 @@ public class EstimationPlayer : MonoBehaviour
         // Initiate spheres if empty
         if (joints == null)
         {
-             
             joints = new GameObject[noj];
             for (int j = 0; j < noj; j++)
             {
@@ -46,11 +59,11 @@ public class EstimationPlayer : MonoBehaviour
             jointRenderer.material.SetColor("_Color", Color.blue);
         }
 
-        StartCoroutine(Play());
+        StartCoroutine(Visualize());
     }
 
 
-    private IEnumerator Play()
+    private IEnumerator Visualize()
     {
         foreach (var frameData in result)
         {
@@ -71,18 +84,16 @@ public class EstimationPlayer : MonoBehaviour
        
     }
 
-    public void ReadData()
-    {
-        CSVReader reader = new CSVReader();
-        result = reader.ReadFrameData(data);
 
-        // get motion info
-        frame = 0;
-        nof = result.Count;
-        noj = result[0].jointPositions.Count;
-        print(nof);
-        print(noj);
-        dt = 1f / fps;
+    public void PlayCoroutine()
+    {
+        StartCoroutine(Play());
     }
+
+    private IEnumerator Play()
+    {
+        yield return new WaitForSeconds(dt);
+    }
+
 
 }

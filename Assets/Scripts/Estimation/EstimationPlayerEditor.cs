@@ -10,7 +10,11 @@ public class EstimationPlayerEditor : Editor
     {
         DrawDefaultInspector();
 
+        if (GUILayout.Button("Visualize"))
+            (target as EstimationPlayer)?.VisualizeCoroutine();
+
         if (GUILayout.Button("Play"))
             (target as EstimationPlayer)?.PlayCoroutine();
+
     }
 }
