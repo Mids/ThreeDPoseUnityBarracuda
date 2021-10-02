@@ -111,8 +111,8 @@ public class EstimationPlayer : MonoBehaviour
             frame = frameData.frameNum;
             print(frame);
 
-            // Set Now3D values for all jointPoints
-            SetJointPositions(jointPoints, frame);
+            // Set Pose3D values for all jointPoints
+            SetPose(jointPoints, frame);
 
             // Update pose
             estimationCharacter.PoseUpdate();
@@ -122,31 +122,35 @@ public class EstimationPlayer : MonoBehaviour
         }
     }
 
-    private void SetJointPositions(EstimationCharacter.JointPoint[] jointPoints, int frame)
+    private void SetPose(EstimationCharacter.JointPoint[] jointPoints, int frame)
     {
-        int scale = -3;
-        jointPoints[PositionIndex.hip.Int()].Pos3D= scale * result[frame].jointPositions[0];
-        jointPoints[PositionIndex.spine.Int()].Pos3D= scale * result[frame].jointPositions[7];
-        jointPoints[PositionIndex.neck.Int()].Pos3D= scale * result[frame].jointPositions[8];
-        //jointPoints[PositionIndex.Nose.Int()].Pos3D= result[frame].jointPositions[9];
-        jointPoints[PositionIndex.head.Int()].Pos3D= scale * result[frame].jointPositions[10];
-
-        jointPoints[PositionIndex.rThighBend.Int()].Pos3D= scale * result[frame].jointPositions[1];
-        jointPoints[PositionIndex.rShin.Int()].Pos3D= scale * result[frame].jointPositions[2];
-        jointPoints[PositionIndex.rFoot.Int()].Pos3D= scale * result[frame].jointPositions[3];
+        SetJointPosition(jointPoints[PositionIndex.hip.Int()], result[frame].jointPositions[0]);
+        SetJointPosition(jointPoints[PositionIndex.spine.Int()], result[frame].jointPositions[7]);
+        SetJointPosition(jointPoints[PositionIndex.neck.Int()], result[frame].jointPositions[8]);
+        SetJointPosition(jointPoints[PositionIndex.head.Int()], result[frame].jointPositions[10]);
         
-        jointPoints[PositionIndex.lThighBend.Int()].Pos3D= scale * result[frame].jointPositions[4];
-        jointPoints[PositionIndex.lShin.Int()].Pos3D= scale * result[frame].jointPositions[5];
-        jointPoints[PositionIndex.lFoot.Int()].Pos3D= scale * result[frame].jointPositions[6];
+        SetJointPosition(jointPoints[PositionIndex.rThighBend.Int()], result[frame].jointPositions[1]);
+        SetJointPosition(jointPoints[PositionIndex.rShin.Int()], result[frame].jointPositions[2]);
+        SetJointPosition(jointPoints[PositionIndex.rFoot.Int()], result[frame].jointPositions[3]);
 
-        jointPoints[PositionIndex.lShldrBend.Int()].Pos3D= scale * result[frame].jointPositions[11];
-        jointPoints[PositionIndex.lForearmBend.Int()].Pos3D= scale * result[frame].jointPositions[12];
-        jointPoints[PositionIndex.lHand.Int()].Pos3D= scale * result[frame].jointPositions[13];
+        SetJointPosition(jointPoints[PositionIndex.lThighBend.Int()], result[frame].jointPositions[4]);
+        SetJointPosition(jointPoints[PositionIndex.lShin.Int()], result[frame].jointPositions[5]);
+        SetJointPosition(jointPoints[PositionIndex.lFoot.Int()], result[frame].jointPositions[6]);
 
-        jointPoints[PositionIndex.rShldrBend.Int()].Pos3D= scale * result[frame].jointPositions[14];
-        jointPoints[PositionIndex.rForearmBend.Int()].Pos3D= scale * result[frame].jointPositions[15];
-        jointPoints[PositionIndex.rHand.Int()].Pos3D= scale * result[frame].jointPositions[16];
+        SetJointPosition(jointPoints[PositionIndex.lShldrBend.Int()], result[frame].jointPositions[11]);
+        SetJointPosition(jointPoints[PositionIndex.lForearmBend.Int()], result[frame].jointPositions[12]);
+        SetJointPosition(jointPoints[PositionIndex.lHand.Int()], result[frame].jointPositions[13]);
+
+        SetJointPosition(jointPoints[PositionIndex.rShldrBend.Int()], result[frame].jointPositions[14]);
+        SetJointPosition(jointPoints[PositionIndex.rForearmBend.Int()], result[frame].jointPositions[15]);
+        SetJointPosition(jointPoints[PositionIndex.rHand.Int()], result[frame].jointPositions[16]);
 
     }
 
+    private void SetJointPosition(EstimationCharacter.JointPoint jointPoint, Vector3 position)
+    {
+        int y_scale = -3;
+        position.y *= y_scale;
+        jointPoint.Pos3D = position;
+    }
 }

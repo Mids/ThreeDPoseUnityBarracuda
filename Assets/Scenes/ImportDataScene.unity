@@ -854,9 +854,7 @@ MonoBehaviour:
   fps: 30
   dt: 0.033333335
   vis_index: 2
-  VNectModel: {fileID: 1405837553}
-  KalmanParamQ: 0.001
-  KalmanParamR: 0.0015
+  estimationCharacter: {fileID: 1405837553}
 --- !u!4 &670100142
 Transform:
   m_ObjectHideFlags: 0
@@ -1173,18 +1171,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1987122555}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1405837553 stripped
+--- !u!114 &1405837553
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3375630703084123367, guid: da21a6c7d63a84a4abbc8a183ae16815,
-    type: 3}
-  m_PrefabInstance: {fileID: 1987122555}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405837552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3558338e378282c4a91d1a3356b57301, type: 3}
+  m_Script: {fileID: 11500000, guid: f03ec03d8561b194eb7335e6dcf93fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ModelObject: {fileID: 1405837552}
+  ZScale: 0.8
 --- !u!1 &1830647507 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6887260614189884373, guid: da21a6c7d63a84a4abbc8a183ae16815,
@@ -1386,7 +1386,7 @@ PrefabInstance:
     - target: {fileID: 3375630701876702501, guid: da21a6c7d63a84a4abbc8a183ae16815,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.92
       objectReference: {fileID: 0}
     - target: {fileID: 3375630701876702501, guid: da21a6c7d63a84a4abbc8a183ae16815,
         type: 3}
@@ -1428,7 +1428,8 @@ PrefabInstance:
       propertyPath: ShowSkeleton
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3375630703084123367, guid: da21a6c7d63a84a4abbc8a183ae16815, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: da21a6c7d63a84a4abbc8a183ae16815, type: 3}
 --- !u!1 &2020856526
 GameObject:
@@ -1507,7 +1508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020856526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.797, z: -4.32}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

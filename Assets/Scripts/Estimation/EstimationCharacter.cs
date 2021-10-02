@@ -190,7 +190,8 @@ public class EstimationCharacter : MonoBehaviour
 
     public void PoseUpdate()
     {
-        // caliculate movement range of z-coordinate from height
+        /*
+        // calculate movement range of z-coordinate from height
         var t1 = Vector3.Distance(jointPoints[PositionIndex.head.Int()].Pos3D, jointPoints[PositionIndex.neck.Int()].Pos3D);
         var t2 = Vector3.Distance(jointPoints[PositionIndex.neck.Int()].Pos3D, jointPoints[PositionIndex.spine.Int()].Pos3D);
         var pm = (jointPoints[PositionIndex.rThighBend.Int()].Pos3D + jointPoints[PositionIndex.lThighBend.Int()].Pos3D) / 2f;
@@ -213,7 +214,7 @@ public class EstimationCharacter : MonoBehaviour
         }
         var dz = (centerTall - tall) / centerTall * ZScale;
 
-        // movement and rotatation of center
+        // movement and rotation of center
         var forward = TriangleNormal(jointPoints[PositionIndex.hip.Int()].Pos3D, jointPoints[PositionIndex.lThighBend.Int()].Pos3D, jointPoints[PositionIndex.rThighBend.Int()].Pos3D);
         jointPoints[PositionIndex.hip.Int()].Transform.position = jointPoints[PositionIndex.hip.Int()].Pos3D * 0.005f + new Vector3(initPosition.x, initPosition.y, initPosition.z + dz);
         jointPoints[PositionIndex.hip.Int()].Transform.rotation = Quaternion.LookRotation(forward) * jointPoints[PositionIndex.hip.Int()].InverseRotation;
@@ -223,6 +224,14 @@ public class EstimationCharacter : MonoBehaviour
         jointPoints[PositionIndex.lToe.Int()].Pos3D = lToePos + new Vector3(0, 12, 0);
         var rToePos = jointPoints[PositionIndex.rToe.Int()].Pos3D;
         jointPoints[PositionIndex.rToe.Int()].Pos3D = rToePos + new Vector3(0, 12, 0);
+
+        */
+
+
+        var forward = TriangleNormal(jointPoints[PositionIndex.hip.Int()].Pos3D, jointPoints[PositionIndex.lThighBend.Int()].Pos3D, jointPoints[PositionIndex.rThighBend.Int()].Pos3D);
+        jointPoints[PositionIndex.hip.Int()].Transform.position = jointPoints[PositionIndex.hip.Int()].Pos3D * 0.005f;
+        jointPoints[PositionIndex.hip.Int()].Transform.rotation = Quaternion.LookRotation(forward) * jointPoints[PositionIndex.hip.Int()].InverseRotation;
+
 
         // rotate each of bones
         foreach (var jointPoint in jointPoints)
