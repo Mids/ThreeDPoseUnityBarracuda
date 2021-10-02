@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -59,6 +60,12 @@ public class EstimationCharacter : MonoBehaviour
     /// <returns></returns>
     public JointPoint[] Init()
     {
+        var JointABs = GetComponentsInChildren<ArticulationBody>().ToList();
+        foreach (var jointAB in JointABs)
+        {
+            jointAB.enabled = false;
+        }
+
         jointPoints = new JointPoint[PositionIndex.Count.Int()];
         for (var i = 0; i < PositionIndex.Count.Int(); i++) jointPoints[i] = new JointPoint();
 

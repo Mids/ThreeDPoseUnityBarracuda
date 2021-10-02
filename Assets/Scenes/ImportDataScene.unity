@@ -138,7 +138,7 @@ ArticulationBody:
   m_GameObject: {fileID: 11929867}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.33493593, y: -0.0003038123, z: -0.000000013449785}
+  m_ParentAnchorPosition: {x: -0.33493593, y: -0.00030394548, z: -0.0000000134503395}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -208,7 +208,7 @@ ArticulationBody:
   m_GameObject: {fileID: 38158583}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.38151094, y: -0.000000145752, z: 0.29147637}
+  m_ParentAnchorPosition: {x: -0.38151094, y: -0.00000020535664, z: 0.29147637}
   m_ParentAnchorRotation: {x: 0.5313995, y: -0.46740112, z: -0.53474814, w: 0.46173105}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -278,7 +278,7 @@ ArticulationBody:
   m_GameObject: {fileID: 64398323}
   m_Enabled: 1
   m_Mass: 0.5
-  m_ParentAnchorPosition: {x: -0.33604786, y: -0.0000000040745363, z: -0.0000000067843104}
+  m_ParentAnchorPosition: {x: -0.33604783, y: 0.000000098138116, z: -0.000000006784538}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.6708825, w: 0.74156374}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -389,7 +389,7 @@ ArticulationBody:
   m_GameObject: {fileID: 196985920}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.381511, y: 0.000000074156574, z: -0.29147637}
+  m_ParentAnchorPosition: {x: -0.381511, y: 0.00000013376122, z: -0.29147637}
   m_ParentAnchorRotation: {x: 0.5313994, y: -0.46740097, z: 0.5347481, w: -0.461731}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -623,7 +623,7 @@ ArticulationBody:
   m_GameObject: {fileID: 446244898}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.39782253, y: 0.000000014202669, z: -0.00000003131572}
+  m_ParentAnchorPosition: {x: -0.39782253, y: -0.00000016292324, z: -0.000000029511284}
   m_ParentAnchorRotation: {x: 0.000000023748761, y: 0.000000050008225, z: 0.76549333,
     w: 0.6434441}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -694,7 +694,7 @@ ArticulationBody:
   m_GameObject: {fileID: 545190303}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.45050213, y: -0.000054997538, z: 0.000000018555989}
+  m_ParentAnchorPosition: {x: -0.45050213, y: -0.000054832693, z: 0.000000018556674}
   m_ParentAnchorRotation: {x: -0.00000006322027, y: -0.000000021073424, z: 0.7073888,
     w: 0.7068247}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -765,7 +765,7 @@ ArticulationBody:
   m_GameObject: {fileID: 611217122}
   m_Enabled: 1
   m_Mass: 0.5
-  m_ParentAnchorPosition: {x: -0.40061903, y: 0.00000017997809, z: -0.000000013670701}
+  m_ParentAnchorPosition: {x: -0.400619, y: -0.00000006251503, z: -0.000000011284187}
   m_ParentAnchorRotation: {x: 0.6685194, y: -0.7433498, z: 0.008404031, w: 0.021033054}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -968,7 +968,7 @@ ArticulationBody:
   m_GameObject: {fileID: 1096667686}
   m_Enabled: 1
   m_Mass: 0.5
-  m_ParentAnchorPosition: {x: -0.33604777, y: 0.000000017578714, z: 0.000000023018012}
+  m_ParentAnchorPosition: {x: -0.33604774, y: 0.00000011979137, z: 0.000000023017785}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.6708825, w: 0.74156374}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -1038,7 +1038,7 @@ ArticulationBody:
   m_GameObject: {fileID: 1102141501}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.34980398, y: 0.000000012456439, z: 0.00000006430594}
+  m_ParentAnchorPosition: {x: -0.349804, y: 0.0000001458975, z: 0.00000006430571}
   m_ParentAnchorRotation: {x: -0.00000005268356, y: 0.00000005268356, z: 0.7741672,
     w: 0.6329814}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -1109,7 +1109,7 @@ ArticulationBody:
   m_GameObject: {fileID: 1370561729}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.060671628, y: -0.00026667048, z: 0.00000008195639}
+  m_ParentAnchorPosition: {x: -0.060671628, y: -0.00026671053, z: 0.00000008195639}
   m_ParentAnchorRotation: {x: -0.0000009693775, y: 0.0000020230486, z: 0.70682526,
     w: 0.7073883}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -1200,7 +1200,7 @@ ArticulationBody:
   m_GameObject: {fileID: 1830647507}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.34980404, y: -0.0000000060972525, z: 0.000000034503614}
+  m_ParentAnchorPosition: {x: -0.34980404, y: 0.00000012734381, z: 0.0000000345035}
   m_ParentAnchorRotation: {x: -0.00000005268356, y: 0.00000005268356, z: 0.7741672,
     w: 0.6329814}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -1271,7 +1271,7 @@ ArticulationBody:
   m_GameObject: {fileID: 1856893852}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: -0.00000023841864, y: -0.0000001937151, z: -0.16654411}
+  m_ParentAnchorPosition: {x: -0.0000002384188, y: -0.000000059604645, z: -0.16654411}
   m_ParentAnchorRotation: {x: 0.6708825, y: 0.74156374, z: -0.0000010431345, w: 0.0000000105367235}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -1336,7 +1336,7 @@ PrefabInstance:
     - target: {fileID: 371565876581238854, guid: da21a6c7d63a84a4abbc8a183ae16815,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 371565876581238854, guid: da21a6c7d63a84a4abbc8a183ae16815,
         type: 3}
@@ -1529,7 +1529,7 @@ ArticulationBody:
   m_GameObject: {fileID: 2021937179}
   m_Enabled: 1
   m_Mass: 1
-  m_ParentAnchorPosition: {x: 0.00000023841854, y: 0.00000025331974, z: 0.16654414}
+  m_ParentAnchorPosition: {x: 0.00000023841835, y: 0.0000003874302, z: 0.16654414}
   m_ParentAnchorRotation: {x: 0.6708825, y: 0.74156374, z: -0.0000010431345, w: 0.0000000105367235}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
