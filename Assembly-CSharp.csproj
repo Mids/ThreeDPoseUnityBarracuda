@@ -323,6 +323,7 @@
     <Compile Include="Assets\VRM\UniHumanoid\PoseModifier\IPoseModifier.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonArrayValidator.cs" />
     <Compile Include="Assets\VRM\UniJSON\Scripts\GenericCallUtility\GenericInvokeCallFactory.cs" />
+    <Compile Include="Assets\Scripts\Estimation\EstimationCharacter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Avatar\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />

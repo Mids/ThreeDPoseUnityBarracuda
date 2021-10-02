@@ -70,7 +70,7 @@ public class EstimationPlayer : MonoBehaviour
             // Visualize estimated joint positions
             for (int j = 0; j < noj; j++)
             {
-                Vector3 pos = 5.0f * frameData.jointPositions[j];
+                Vector3 pos = 3.0f * frameData.jointPositions[j];
                 pos.y *= -1;
                 joints[j].transform.position = pos;
             }
@@ -85,8 +85,8 @@ public class EstimationPlayer : MonoBehaviour
     }
 
 
-    public VNectModel VNectModel;
-    private VNectModel.JointPoint[] jointPoints;
+    public EstimationCharacter estimationCharacter;
+    private EstimationCharacter.JointPoint[] jointPoints;
 
     public void PlayCoroutine()
     {
@@ -98,7 +98,7 @@ public class EstimationPlayer : MonoBehaviour
         }
 
         // Init model with jointPoints
-        jointPoints = VNectModel.Init();
+        jointPoints = estimationCharacter.Init();
 
 
         StartCoroutine(Play());
@@ -109,74 +109,44 @@ public class EstimationPlayer : MonoBehaviour
         foreach (var frameData in result)
         {
             frame = frameData.frameNum;
+            print(frame);
 
             // Set Now3D values for all jointPoints
             SetJointPositions(jointPoints, frame);
 
-            // Kalman..
-            foreach (var jp in jointPoints)
-            {
-                KalmanUpdate(jp);
-            }
+            // Update pose
+            estimationCharacter.PoseUpdate();
+
+            yield return new WaitForSeconds(dt);
+
         }
-        yield return new WaitForSeconds(dt);
     }
 
-    private void SetJointPositions(VNectModel.JointPoint[] jointPoints, int frame)
+    private void SetJointPositions(EstimationCharacter.JointPoint[] jointPoints, int frame)
     {
-        jointPoints[PositionIndex.hip.Int()].Now3D = -5.0f * result[frame].jointPositions[0];
-        jointPoints[PositionIndex.spine.Int()].Now3D = -5.0f * result[frame].jointPositions[7];
-        jointPoints[PositionIndex.neck.Int()].Now3D = -5.0f * result[frame].jointPositions[8];
-        //jointPoints[PositionIndex.Nose.Int()].Now3D = result[frame].jointPositions[9];
-        jointPoints[PositionIndex.head.Int()].Now3D = -5.0f * result[frame].jointPositions[10];
+        int scale = -3;
+        jointPoints[PositionIndex.hip.Int()].Pos3D= scale * result[frame].jointPositions[0];
+        jointPoints[PositionIndex.spine.Int()].Pos3D= scale * result[frame].jointPositions[7];
+        jointPoints[PositionIndex.neck.Int()].Pos3D= scale * result[frame].jointPositions[8];
+        //jointPoints[PositionIndex.Nose.Int()].Pos3D= result[frame].jointPositions[9];
+        jointPoints[PositionIndex.head.Int()].Pos3D= scale * result[frame].jointPositions[10];
 
-        jointPoints[PositionIndex.rThighBend.Int()].Now3D = -5.0f * result[frame].jointPositions[1];
-        jointPoints[PositionIndex.rShin.Int()].Now3D = -5.0f * result[frame].jointPositions[2];
-        jointPoints[PositionIndex.rFoot.Int()].Now3D = -5.0f * result[frame].jointPositions[3];
+        jointPoints[PositionIndex.rThighBend.Int()].Pos3D= scale * result[frame].jointPositions[1];
+        jointPoints[PositionIndex.rShin.Int()].Pos3D= scale * result[frame].jointPositions[2];
+        jointPoints[PositionIndex.rFoot.Int()].Pos3D= scale * result[frame].jointPositions[3];
         
-        jointPoints[PositionIndex.lThighBend.Int()].Now3D = -5.0f * result[frame].jointPositions[4];
-        jointPoints[PositionIndex.lShin.Int()].Now3D = -5.0f * result[frame].jointPositions[5];
-        jointPoints[PositionIndex.lFoot.Int()].Now3D = -5.0f * result[frame].jointPositions[6];
+        jointPoints[PositionIndex.lThighBend.Int()].Pos3D= scale * result[frame].jointPositions[4];
+        jointPoints[PositionIndex.lShin.Int()].Pos3D= scale * result[frame].jointPositions[5];
+        jointPoints[PositionIndex.lFoot.Int()].Pos3D= scale * result[frame].jointPositions[6];
 
-        jointPoints[PositionIndex.lShldrBend.Int()].Now3D = -5.0f * result[frame].jointPositions[11];
-        jointPoints[PositionIndex.lForearmBend.Int()].Now3D = -5.0f * result[frame].jointPositions[12];
-        jointPoints[PositionIndex.lHand.Int()].Now3D = -5.0f * result[frame].jointPositions[13];
+        jointPoints[PositionIndex.lShldrBend.Int()].Pos3D= scale * result[frame].jointPositions[11];
+        jointPoints[PositionIndex.lForearmBend.Int()].Pos3D= scale * result[frame].jointPositions[12];
+        jointPoints[PositionIndex.lHand.Int()].Pos3D= scale * result[frame].jointPositions[13];
 
-        jointPoints[PositionIndex.rShldrBend.Int()].Now3D = -5.0f * result[frame].jointPositions[14];
-        jointPoints[PositionIndex.rForearmBend.Int()].Now3D = -5.0f * result[frame].jointPositions[15];
-        jointPoints[PositionIndex.rHand.Int()].Now3D = -5.0f * result[frame].jointPositions[16];
+        jointPoints[PositionIndex.rShldrBend.Int()].Pos3D= scale * result[frame].jointPositions[14];
+        jointPoints[PositionIndex.rForearmBend.Int()].Pos3D= scale * result[frame].jointPositions[15];
+        jointPoints[PositionIndex.rHand.Int()].Pos3D= scale * result[frame].jointPositions[16];
 
     }
-
-    /// <summary>
-    /// For Kalman filter parameter Q
-    /// </summary>
-    public float KalmanParamQ;
-
-    /// <summary>
-    /// For Kalman filter parameter R
-    /// </summary>
-    public float KalmanParamR;
-
-
-    void KalmanUpdate(VNectModel.JointPoint measurement)
-    {
-        measurementUpdate(measurement);
-        measurement.Pos3D.x = measurement.X.x + (measurement.Now3D.x - measurement.X.x) * measurement.K.x;
-        measurement.Pos3D.y = measurement.X.y + (measurement.Now3D.y - measurement.X.y) * measurement.K.y;
-        measurement.Pos3D.z = measurement.X.z + (measurement.Now3D.z - measurement.X.z) * measurement.K.z;
-        measurement.X = measurement.Pos3D;
-    }
-
-    void measurementUpdate(VNectModel.JointPoint measurement)
-    {
-        measurement.K.x = (measurement.P.x + KalmanParamQ) / (measurement.P.x + KalmanParamQ + KalmanParamR);
-        measurement.K.y = (measurement.P.y + KalmanParamQ) / (measurement.P.y + KalmanParamQ + KalmanParamR);
-        measurement.K.z = (measurement.P.z + KalmanParamQ) / (measurement.P.z + KalmanParamQ + KalmanParamR);
-        measurement.P.x = KalmanParamR * (measurement.P.x + KalmanParamQ) / (KalmanParamR + measurement.P.x + KalmanParamQ);
-        measurement.P.y = KalmanParamR * (measurement.P.y + KalmanParamQ) / (KalmanParamR + measurement.P.y + KalmanParamQ);
-        measurement.P.z = KalmanParamR * (measurement.P.z + KalmanParamQ) / (KalmanParamR + measurement.P.z + KalmanParamQ);
-    }
-
 
 }
