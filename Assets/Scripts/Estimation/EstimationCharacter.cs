@@ -195,7 +195,7 @@ public class EstimationCharacter : MonoBehaviour
         return JointPoints;
     }
 
-    public void PoseUpdate()
+    public void PoseUpdate(GameObject forward_vis)
     {
         /*
         // calculate movement range of z-coordinate from height
@@ -235,7 +235,9 @@ public class EstimationCharacter : MonoBehaviour
         */
 
 
-        var forward = TriangleNormal(jointPoints[PositionIndex.hip.Int()].Pos3D, jointPoints[PositionIndex.lThighBend.Int()].Pos3D, jointPoints[PositionIndex.rThighBend.Int()].Pos3D);
+        //var forward = TriangleNormal(jointPoints[PositionIndex.hip.Int()].Pos3D, jointPoints[PositionIndex.lThighBend.Int()].Pos3D, jointPoints[PositionIndex.rThighBend.Int()].Pos3D);
+        var forward = TriangleNormal(jointPoints[PositionIndex.hip.Int()].Pos3D, jointPoints[PositionIndex.rShldrBend.Int()].Pos3D, jointPoints[PositionIndex.lShldrBend.Int()].Pos3D);
+        forward_vis.transform.position = forward;
         jointPoints[PositionIndex.hip.Int()].Transform.position = jointPoints[PositionIndex.hip.Int()].Pos3D * 0.005f;
         jointPoints[PositionIndex.hip.Int()].Transform.rotation = Quaternion.LookRotation(forward) * jointPoints[PositionIndex.hip.Int()].InverseRotation;
 
