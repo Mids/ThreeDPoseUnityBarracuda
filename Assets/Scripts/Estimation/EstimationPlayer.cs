@@ -9,6 +9,7 @@ public class EstimationPlayer : MonoBehaviour
     
     private GameObject[] joints;
     private GameObject joint_vis;
+    private GameObject forward_vis;
     private int frame;
     private int nof;
     private int noj;
@@ -106,6 +107,14 @@ public class EstimationPlayer : MonoBehaviour
 
     private IEnumerator Play()
     {
+        if(forward_vis == null)
+        {
+            forward_vis = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            forward_vis.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            var forwardRenderer = forward_vis.GetComponent<Renderer>();
+            forwardRenderer.material.SetColor("_Color", Color.red);
+        }
+
         foreach (var frameData in result)
         {
             frame = frameData.frameNum;
@@ -115,7 +124,7 @@ public class EstimationPlayer : MonoBehaviour
             SetPose(jointPoints, frame);
 
             // Update pose
-            estimationCharacter.PoseUpdate();
+            estimationCharacter.PoseUpdate(forward_vis);
 
             yield return new WaitForSeconds(dt);
 
