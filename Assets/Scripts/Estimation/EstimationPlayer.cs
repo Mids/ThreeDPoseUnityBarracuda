@@ -99,8 +99,10 @@ public class EstimationPlayer : MonoBehaviour
         }
 
         // Init model with jointPoints
-        jointPoints = estimationCharacter.Init();
-
+        if(jointPoints == null)
+        {
+            jointPoints = estimationCharacter.Init();
+        }
 
         StartCoroutine(Play());
     }
@@ -116,9 +118,13 @@ public class EstimationPlayer : MonoBehaviour
         }
 
         foreach (var frameData in result)
-        {
+        {       
             frame = frameData.frameNum;
-            print(frame);
+            //print(frame);
+            if(frame == 1)
+            {
+                print(result[frame].jointPositions[0]);
+            }
 
             // Set Pose3D values for all jointPoints
             SetPose(jointPoints, frame);
