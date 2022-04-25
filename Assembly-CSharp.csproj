@@ -57,6 +57,7 @@
      <Compile Include="Assets\VRM\UniGLTF\Scripts\Extensions\glTFExtensions.cs" />
      <Compile Include="Assets\VRM\UniHumanoid\Scenes\RuntimeBvhLoader.cs" />
      <Compile Include="Assets\Scripts\Estimation\EstimationCharacter.cs" />
+     <Compile Include="Assets\Scripts\Obstacle.cs" />
      <Compile Include="Assets\VRM\DepthFirstScheduler\Scheduler\ThreadPoolScheduler.cs" />
      <Compile Include="Assets\VRM\ShaderProperty\Runtime\GLTF\Unlit_Transparent.cs" />
      <Compile Include="Assets\Scripts\Recording\AnimationPlayer.cs" />
@@ -83,9 +84,9 @@
      <Compile Include="Assets\VRM\UniGLTF\Scripts\Format\glTFMaterial.cs" />
      <Compile Include="Assets\VRM\UniJSON\Scripts\GenericConstructor.cs" />
      <Compile Include="Assets\VRM\UniGLTF\Scripts\UniGLTFVersion.cs" />
-     <Compile Include="Assets\VRM\UniJSON\Scripts\MsgPack\EndianConverter.cs" />
      <Compile Include="Assets\VRM\UniJSON\Scripts\MsgPack\MsgPackType.cs" />
      <Compile Include="Assets\VRM\UniJSON\Scripts\ConcreteCast.g.cs" />
+     <Compile Include="Assets\VRM\UniJSON\Scripts\MsgPack\EndianConverter.cs" />
      <Compile Include="Assets\VRM\UniGLTF\Scripts\Extensions\ArrayExtensions.cs" />
      <Compile Include="Assets\VRM\UniJSON\Scripts\Rpc\RpcDispatcher.cs" />
      <Compile Include="Assets\VRM\UniGLTF\Scripts\Extensions\StringExtensions.cs" />
@@ -178,6 +179,7 @@
      <Compile Include="Assets\VRM\MToon\MToon\Scripts\Enums.cs" />
      <Compile Include="Assets\VRM\UniHumanoid\Scripts\IO\BvhImporter.cs" />
      <Compile Include="Assets\VRM\UniVRM\Scripts\Format\VRMExportSettings.cs" />
+     <Compile Include="Assets\WallParts.cs" />
      <Compile Include="Assets\VRM\UniJSON\Scripts\MsgPack\MsgPackValue.cs" />
      <Compile Include="Assets\VRM\UniJSON\Scripts\Json\JsonString.cs" />
      <Compile Include="Assets\VRM\UniVRM\Scripts\Format\VRMImporter.cs" />
@@ -320,7 +322,6 @@
      <Compile Include="Assets\VRM\UniHumanoid\PoseModifier\IPoseModifier.cs" />
      <Compile Include="Assets\VRM\UniJSON\Scripts\JsonSchemaValidator\JsonArrayValidator.cs" />
      <Compile Include="Assets\VRM\UniJSON\Scripts\GenericCallUtility\GenericInvokeCallFactory.cs" />
-     <Compile Include="Assets\Scripts\Obstacle.cs" />
      <None Include="Assets\Avatar\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
      <None Include="Assets\Avatar\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
      <None Include="Assets\Scripts\Shader\TintShader.shader" />

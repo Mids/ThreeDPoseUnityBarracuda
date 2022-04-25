@@ -63,6 +63,7 @@
      <Compile Include="Assets\VRM\UniGLTF\Editor\Tests\MaterialTests.cs" />
      <Compile Include="Assets\VRM\UniGLTF\Editor\gltfAssetPostprocessor.cs" />
      <Compile Include="Assets\VRM\UniVRM\Editor\SkinnedMeshUtility\MeshIntegrator.cs" />
+     <Compile Include="Assets\Scripts\Editor\MeshRendererInspector.cs" />
      <Compile Include="Assets\VRM\UniVRM\Editor\Format\VRMAOTMenu.cs" />
      <Compile Include="Assets\VRM\UniJSON\Editor\Tests\Json\SchemaTests.cs" />
      <Compile Include="Assets\VRM\UniHumanoid\Editor\BoneMappingEditor.cs" />
@@ -126,7 +127,6 @@
      <Compile Include="Assets\VRM\UniVRM\Editor\VRMMonoBehaviourComparator.cs" />
      <Compile Include="Assets\VRM\UniVRM\Editor\BlendShape\SerializedBlendShapeClipEditor.cs" />
      <Compile Include="Assets\VRM\UniVRM\Editor\BlendShape\BlendShapeClipEditor.cs" />
-     <Compile Include="Assets\Scripts\Editor\MeshRendererInspector.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
